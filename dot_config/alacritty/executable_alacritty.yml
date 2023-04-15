@@ -1,0 +1,5 @@
+import:
+  - ~/.config/alacritty/themes/themes/hyper.yaml
+
+font:
+  size: 9
