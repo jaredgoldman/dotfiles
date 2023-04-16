@@ -35,8 +35,12 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 # Custom bindings
 
-# Notification system
+# Startup stuff
+exec --no-startup-id blueberry
 exec --no-startup-id dunst
+exec --no-startup-id arandr
+exec --no-startup-id alacritty
+exec --no-startup-id pavucontrol
 # start a terminal
 bindsym $mod+Return exec alacritty
 # start a brower window
