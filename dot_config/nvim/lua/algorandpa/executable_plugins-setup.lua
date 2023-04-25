@@ -51,6 +51,7 @@ return require("packer").startup(function(use)
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
+    use { 'leafOfTree/vim-svelte-plugin' }
     -- LSP Zero
     use({
         "VonHeikemen/lsp-zero.nvim",
