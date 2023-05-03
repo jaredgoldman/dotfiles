@@ -52,6 +52,7 @@ return require("packer").startup(function(use)
         config = function() require("nvim-autopairs").setup {} end
     }
     use { 'leafOfTree/vim-svelte-plugin' }
+    use { 'neoclide/coc.nvim', branch = 'release' }
     -- LSP Zero
     use({
         "VonHeikemen/lsp-zero.nvim",
