@@ -41,5 +41,9 @@ keymap.set("n", "<leader>ps", ":PackerSync<CR>")
 -- LSP
 keymap.set("n", "<leader>ls", ":LspStop<CR>")
 keymap.set("n", "<leader>lo", ":LspStart<CR>")
--- Copilot j
+
+-- Copilot
 vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
+--  ChatGPT
+keymap.set("n", "<leader>cc", ":ChatGPT<CR>")
