@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 20eba03e010c047f42280fb1e07a253da01542e1 jgarch <jgarch@archlinux.(none)> 1680788087 -0400	clone: from https://github.com/jaredgoldman/nvim-config.git
+20eba03e010c047f42280fb1e07a253da01542e1 31e8a5778459c483714425781d219acca7fd9999 jaredgoldman <jaredgoldmandev@gmail.com> 1680796006 -0400	commit: Add cmp and prettier, add lsp file
+31e8a5778459c483714425781d219acca7fd9999 118d129a2ce5bd9c0673a3ab59b9c1eed4deac0c jaredgoldman <jaredgoldmandev@gmail.com> 1680887869 -0400	commit: Add prettier and autopairs
