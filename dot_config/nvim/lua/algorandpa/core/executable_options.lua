@@ -61,6 +61,7 @@ api.nvim_create_autocmd({ "BufWritePre" }, {
 -- COC
 -- Enable tab scrolling in Coc.nvim
 cmd([[
-  inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
-  inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+    inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
+    inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 ]])
