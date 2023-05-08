@@ -2,10 +2,8 @@ local opt = vim.opt
 local api = vim.api
 local g = vim.g
 local cmd = vim.cmd
-
 -- line numbers
 opt.number = true
-
 -- tabs & indentation
 opt.tabstop = 4
 opt.shiftwidth = 4
@@ -57,11 +55,4 @@ api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*" },
     command = [[if &filetype !~# 'lsp' | %s/\s\+$//e | endif]],
 })
-
 -- COC
--- Enable tab scrolling in Coc.nvim
-cmd([[
-    inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
-    inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-]])

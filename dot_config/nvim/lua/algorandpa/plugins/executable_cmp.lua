@@ -11,7 +11,6 @@ cmp.setup({
     mapping = {
         ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
         ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        ['<CR>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.close(),
     }
 })

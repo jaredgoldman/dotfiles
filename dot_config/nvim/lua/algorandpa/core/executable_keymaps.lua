@@ -47,3 +47,15 @@ vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Accept("<CR>")', { silent = true,
 
 --  ChatGPT
 keymap.set("n", "<leader>cc", ":ChatGPT<CR>")
+
+-- Key mappings for completion navigation and confirmation
+vim.api.nvim_set_keymap('i', '<CR>', 'coc#pum#visible() ? coc#pum#confirm() : "\\<CR>"',
+    { expr = true, noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<silent><expr> <CR>', 'coc#pum#visible() ? coc#_select_confirm() : "\\<C-g>u\\<CR>"',
+    { expr = true, noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<silent><expr> <CR>',
+    'coc#pumvisible() ? coc#_select_confirm() : "\\<C-g>u\\<CR>\\<C-r>=coc#on_enter()\\<CR>"',
+    { expr = true, noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<silent><expr> <CR>',
+    'coc#pumvisible() and coc#pum#info()["index"] != -1 ? coc#pum#confirm() : "\\<C-g>u\\<CR>"',
+    { expr = true, noremap = true, silent = true })
