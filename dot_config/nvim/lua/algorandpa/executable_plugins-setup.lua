@@ -52,18 +52,18 @@ return require("packer").startup(function(use)
         config = function() require("nvim-autopairs").setup {} end
     }
     use { 'leafOfTree/vim-svelte-plugin' }
-    -- chatGPT
-    use({
-        "jackMort/ChatGPT.nvim",
-        config = function()
-            require("chatgpt").setup()
-        end,
-        requires = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim"
-        }
-    })
+    -- -- chatGPT
+    -- use({
+    --     "jackMort/ChatGPT.nvim",
+    --     config = function()
+    --         require("chatgpt").setup()
+    --     end,
+    --     requires = {
+    --         "MunifTanjim/nui.nvim",
+    --         "nvim-lua/plenary.nvim",
+    --         "nvim-telescope/telescope.nvim"
+    --     }
+    -- })
     -- COC
     use { 'neoclide/coc.nvim', branch = 'release' }
     -- LSP Zero
