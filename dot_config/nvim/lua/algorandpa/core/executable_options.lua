@@ -55,4 +55,3 @@ api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*" },
     command = [[if &filetype !~# 'lsp' | %s/\s\+$//e | endif]],
 })
--- COC
