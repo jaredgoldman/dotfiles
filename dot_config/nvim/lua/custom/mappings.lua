@@ -37,7 +37,6 @@ M.general = {
     ["<A-j>"] = { ":move '>+1<CR>gv-gv", "Move text up", opts },
     ["<A-k>"] = { ":move '<-2<CR>gv-gv", "Move text down", opts },
   },
-
 }
 
 return M

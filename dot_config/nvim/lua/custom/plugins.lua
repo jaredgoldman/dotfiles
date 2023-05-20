@@ -64,7 +64,6 @@ local plugins = {
       },
     },
   },
-
 }
 
 return plugins
