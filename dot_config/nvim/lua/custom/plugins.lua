@@ -1,8 +1,7 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
-
 
   {
     "neovim/nvim-lspconfig",
@@ -23,7 +22,7 @@ local plugins = {
 
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason
+    opts = overrides.mason,
   },
 
   {
@@ -47,8 +46,25 @@ local plugins = {
 
   {
     "github/copilot.vim",
-    lazy = false
-  }
+    lazy = false,
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    opts = {
+      mapping = {
+        -- disable  tab
+        ["<Tab>"] = function(callback)
+          callback()
+        end,
+
+        ["<S-Tab>"] = function(callback)
+          callback()
+        end,
+      },
+    },
+  },
+
 }
 
 return plugins
