@@ -2,6 +2,7 @@ local opt = vim.opt
 local api = vim.api
 -- line numbers
 opt.number = true
+
 -- tabs & indentation
 opt.tabstop = 4
 opt.shiftwidth = 4

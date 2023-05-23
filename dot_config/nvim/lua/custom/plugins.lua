@@ -1,5 +1,4 @@
 local overrides = require "custom.configs.overrides"
-
 ---@type NvPluginSpec[]
 local plugins = {
 
@@ -49,20 +48,26 @@ local plugins = {
     lazy = false,
   },
 
-  {
-    "hrsh7th/nvim-cmp",
-    opts = {
-      mapping = {
-        -- disable  tab
-        ["<Tab>"] = function(callback)
-          callback()
-        end,
+  ["hrsh7th/nvim-cmp"] = {
+    override_options = function()
+      local cmp = require "cmp"
 
-        ["<S-Tab>"] = function(callback)
-          callback()
-        end,
-      },
-    },
+      return {
+        mapping = {
+          ["<Up>"] = cmp.mapping.select_prev_item(),
+          ["<Down>"] = cmp.mapping.select_next_item(),
+        },
+      }
+    end,
+  },
+
+  {
+    "prettier/vim-prettier",
+    run = "yarn install",
+  },
+
+  {
+    "mattn/emmet-vim",
   },
 }
 
