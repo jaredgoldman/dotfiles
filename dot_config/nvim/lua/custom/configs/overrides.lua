@@ -12,7 +12,7 @@ M.treesitter = {
     "c",
     "markdown",
     "markdown_inline",
-    "php"
+    "php",
   },
   indent = {
     enable = true,
@@ -34,10 +34,7 @@ M.mason = {
     "typescript-language-server",
     "deno",
     "prettier",
-
-    -- c/cpp stuff
-    "clangd",
-    "clang-format",
+    "intelephense",
   },
 }
 
