@@ -4,9 +4,9 @@ M.treesitter = {
   ensure_installed = {
     "vim",
     "lua",
-    "html",
     "css",
     "javascript",
+    "html",
     "typescript",
     "tsx",
     "c",
@@ -16,9 +16,9 @@ M.treesitter = {
   },
   indent = {
     enable = true,
-    -- disable = {
-    --   "python"
-    -- },
+  },
+  highlight = {
+    enable = true,
   },
 }
 

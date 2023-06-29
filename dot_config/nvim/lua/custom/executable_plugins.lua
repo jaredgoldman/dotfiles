@@ -69,6 +69,8 @@ local plugins = {
   {
     "mattn/emmet-vim",
   },
+  { "akinsho/git-conflict.nvim", version = "*", config = true, lazy = false },
+  { "f-person/git-blame.nvim", lazy = false },
 }
 
 return plugins

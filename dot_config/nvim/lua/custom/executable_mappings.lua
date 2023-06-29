@@ -13,10 +13,9 @@ M.general = {
     ["<leader>sx"] = { ":close<CR>", "close current split window", opts },
     ["<leader>tx"] = { ":tabclose<CR>", "close current tab", opts },
     ["<leader>e"] = { ":NvimTreeToggle<CR>", "nvim-tree", opts },
-    ["<leader>fs"] = { "<cmd>Telescope live_grep<cr>", "telescope", opts },
-    ["<leader>fc"] = { "<cmd>Telescope grep_string<cr>", "telescope", opts },
     ["<leader>ls"] = { ":LspStop<CR>", "LSP", opts },
     ["<leader>lo"] = { ":LspStart<CR>", "LSP", opts },
+    ["<leader>cf"] = { ":NvimTreeCollapse<CR>", "nvim-tree", opts },
   },
 
   x = {
