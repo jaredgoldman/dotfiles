@@ -33,7 +33,6 @@ local plugins = {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
-
   -- Install a plugin
   {
     "max397574/better-escape.nvim",
@@ -47,20 +46,6 @@ local plugins = {
     "github/copilot.vim",
     lazy = false,
   },
-
-  ["hrsh7th/nvim-cmp"] = {
-    override_options = function()
-      local cmp = require "cmp"
-
-      return {
-        mapping = {
-          ["<Up>"] = cmp.mapping.select_prev_item(),
-          ["<Down>"] = cmp.mapping.select_next_item(),
-        },
-      }
-    end,
-  },
-
   {
     "prettier/vim-prettier",
     run = "yarn install",
@@ -68,6 +53,15 @@ local plugins = {
 
   {
     "mattn/emmet-vim",
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    lazy = false,
+    config = function()
+      require("nvim-ts-autotag").setup {
+        filetypes = { "html", "javascript", "javascriptreact", "typescriptreact", "svelte", "vue" },
+      }
+    end,
   },
   { "akinsho/git-conflict.nvim", version = "*", config = true, lazy = false },
   { "f-person/git-blame.nvim", lazy = false },

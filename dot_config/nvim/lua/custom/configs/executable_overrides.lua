@@ -20,6 +20,9 @@ M.treesitter = {
   highlight = {
     enable = true,
   },
+  autotag = {
+    enable = true,
+  },
 }
 
 M.mason = {
