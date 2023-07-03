@@ -22,11 +22,17 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# Aliases
+# -- Aliases -- #
+
 # Virtual env
 alias pyenv="source env/bin/activate"
+
+# Networking
 alias resetiptables="sudo iptables -F && sudo iptables -X && sudo iptables -t nat -F && sudo iptables -t nat -X && sudo iptables -t mangle -F && sudo iptables -t mangle -X && sudo iptables -P INPUT ACCEPT && sudo iptables -P FORWARD ACCEPT && sudo iptables -P OUTPUT ACCEPT"
+alias vim="nvim"
+
+# Brightness
+alias brightness="xrandr --output eDP-1 --brightness"
+
 # Env
 export EDITOR="nvim"
-
-
