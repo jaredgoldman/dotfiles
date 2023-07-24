@@ -46,6 +46,13 @@ opt.backspace = "indent,eol,start"
 
 -- autoread
 opt.autoread = true
+-- Function to set autocmd
+local function set_autocmd(event, pattern, command)
+  vim.cmd(string.format("autocmd %s %s %s", event, pattern, command))
+end
+
+-- Trigger 'checktime' on 'CursorHold' event
+set_autocmd("CursorHold", "*", "checktime")
 
 -- Show trailing whitespace
 api.nvim_set_option("list", true)
