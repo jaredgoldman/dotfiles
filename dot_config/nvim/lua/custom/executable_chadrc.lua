@@ -44,6 +44,9 @@ opt.cursorline = true
 -- backspace
 opt.backspace = "indent,eol,start"
 
+-- autoread
+opt.autoread = true
+
 -- Show trailing whitespace
 api.nvim_set_option("list", true)
 api.nvim_set_option("listchars", "eol:$,nbsp:_,tab:>-,trail:~,extends:>,precedes:<")

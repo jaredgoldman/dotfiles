@@ -38,6 +38,7 @@ M.mason = {
     "deno",
     "prettier",
     "intelephense",
+    "tailwindcss",
   },
 }
 
