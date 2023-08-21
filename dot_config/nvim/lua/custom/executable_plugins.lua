@@ -45,6 +45,7 @@ local plugins = {
   {
     "github/copilot.vim",
     lazy = false,
+    enabled = false,
   },
   {
     "prettier/vim-prettier",
@@ -60,6 +61,7 @@ local plugins = {
     config = function()
       require("nvim-ts-autotag").setup {
         filetypes = { "html", "javascript", "javascriptreact", "typescriptreact", "svelte", "vue" },
+        enable_close_on_slash = false,
       }
     end,
   },
