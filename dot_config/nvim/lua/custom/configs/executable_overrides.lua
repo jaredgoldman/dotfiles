@@ -39,6 +39,7 @@ M.mason = {
     "prettier",
     "intelephense",
     "tailwindcss",
+    "lua"
   },
 }
 
