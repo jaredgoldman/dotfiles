@@ -45,7 +45,7 @@ local plugins = {
   {
     "github/copilot.vim",
     lazy = false,
-    enabled = false,
+    enabled = true,
   },
   {
     "prettier/vim-prettier",
@@ -67,8 +67,7 @@ local plugins = {
   },
   { "akinsho/git-conflict.nvim", version = "*", config = true, lazy = false },
   { "f-person/git-blame.nvim", lazy = false },
-  {"b0o/schemastore.nvim"}
-
+  { "b0o/schemastore.nvim" },
 }
 
 return plugins

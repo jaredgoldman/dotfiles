@@ -39,7 +39,8 @@ M.mason = {
     "prettier",
     "intelephense",
     "tailwindcss",
-    "lua"
+    "lua",
+    "prisma-language-server",
   },
 }
 
