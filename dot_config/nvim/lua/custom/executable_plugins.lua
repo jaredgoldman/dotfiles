@@ -45,7 +45,7 @@ local plugins = {
   {
     "github/copilot.vim",
     lazy = false,
-    enabled = true,
+    enabled = false,
   },
   {
     "prettier/vim-prettier",
