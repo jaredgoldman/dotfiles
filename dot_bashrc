@@ -30,6 +30,14 @@ esac
 # Virtual env
 alias pyenv="source env/bin/activate"
 
+# Docker
+# XXX: these don't actually work but keeping them here to call manually
+alias rmdockerimages=""
+alias rmdockercontainers="sudo docker rm $(docker ps -aq) -f"
+alias rmdockerall="sudo rmdockerimages && rmdockercontainers"
+alias printdockercommands="echo docker rmi $(docker images -q) -f"
+
+
 # Networking
 alias resetiptables="sudo iptables -F && sudo iptables -X && sudo iptables -t nat -F && sudo iptables -t nat -X && sudo iptables -t mangle -F && sudo iptables -t mangle -X && sudo iptables -P INPUT ACCEPT && sudo iptables -P FORWARD ACCEPT && sudo iptables -P OUTPUT ACCEPT"
 alias vim="nvim"
@@ -40,3 +48,26 @@ alias brightness="xrandr --output eDP-1 --brightness"
 
 # Env
 export EDITOR="nvim"
+
+# Functions
+function delete_old_branches() {
+    local branch last_commit
+    local months_ago=${1:-3} # Default to 3 months if no argument is provided.
+
+    git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short) %(committerdate:iso8601)' | while read branch last_commit; do
+        if [[ $(date -d "$last_commit" +%s) -lt $(date -d "$months_ago months ago" +%s) ]]; then
+            echo "Deleting old branch $branch last committed on $last_commit"
+            git branch -D "$branch"
+        fi
+    done
+}
+
+function print_docker_commads() {
+    cat <<EOF
+-- Docker god commands --
+# delete all containers
+sudo docker rm $(docker ps -aq) -f"
+# delete all images
+echo docker rmi $(docker images -q) -f"
+EOF
+}
