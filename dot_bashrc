@@ -1,6 +1,6 @@
 # ~/.bashrc
 # Keychain
-eval $(keychain --eval --quiet id_ed25519_cbc id_ed25519_gh id_rsa_do)
+eval $(keychain --eval --quiet id_ed25519_pkr id_ed25519_gh id_rsa_do)
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -29,27 +29,27 @@ esac
 
 # Virtual env
 alias pyenv="source env/bin/activate"
-
-# Docker
-# XXX: these don't actually work but keeping them here to call manually
-alias rmdockerimages=""
-alias rmdockercontainers="sudo docker rm $(docker ps -aq) -f"
-alias rmdockerall="sudo rmdockerimages && rmdockercontainers"
-alias printdockercommands="echo docker rmi $(docker images -q) -f"
-
+# NVIM
+alias vim="nvim"
 
 # Networking
 alias resetiptables="sudo iptables -F && sudo iptables -X && sudo iptables -t nat -F && sudo iptables -t nat -X && sudo iptables -t mangle -F && sudo iptables -t mangle -X && sudo iptables -P INPUT ACCEPT && sudo iptables -P FORWARD ACCEPT && sudo iptables -P OUTPUT ACCEPT"
-alias vim="nvim"
 alias whichwanip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # Brightness
 alias brightness="xrandr --output eDP-1 --brightness"
 
-# Env
-export EDITOR="nvim"
+# OSF
+## Deploy CDK Locally
+alias buildcdk="cdk synth --output=./cdk.out.local"
+alias runcdk="sam local start-api -t ./cdk.out.local/admin-core.template.json --env-vars env.json"
+## Deploy DDK
+alias deploycdk="cd fe && pnpm i --frozen-lockfile && pnpm run build && cd .. && pnpm run cdk deploy --all --require-approval never"
 
-# Functions
+
+# -- Functions-- #
+
+## Delete old git branches
 function delete_old_branches() {
     local branch last_commit
     local months_ago=${1:-3} # Default to 3 months if no argument is provided.
@@ -62,6 +62,7 @@ function delete_old_branches() {
     done
 }
 
+## Print userful docker commands
 function print_docker_commads() {
     cat <<EOF
 -- Docker god commands --
@@ -71,3 +72,23 @@ sudo docker rm $(docker ps -aq) -f"
 echo docker rmi $(docker images -q) -f"
 EOF
 }
+
+generate_ssh_key() {
+    # Prompt for a custom string to append to the filename
+    read -p "Enter a custom string to append to the key filename: " custom_string
+
+    # Define the key file names
+    private_key="~/.ssh/id_ed25519_$custom_string"
+    public_key="~/.ssh/id_ed25519_$custom_string.pub"
+
+    # Generate the ED25519 key pair
+    ssh-keygen -t ed25519 -f "$private_key" -N ""
+
+    # Print the public key
+    echo "Public Key:"
+    cat "$public_key"
+}
+
+# -- Variables -- #
+export SAM_CLI_TELEMETRY=0
+export EDITOR="nvim"
