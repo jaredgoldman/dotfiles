@@ -27,6 +27,7 @@ M.general = {
 
   i = {
     ["C-j"] = { 'copilot#Accept("<CR>")', "Copilot accept", { silent = true, expr = true } },
+    ["<M-l>"] = { "<ESC>", "escape", opts },
   },
 }
 

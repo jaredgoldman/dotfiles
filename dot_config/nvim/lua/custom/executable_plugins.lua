@@ -27,21 +27,18 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    config = function()
+      require("ts_context_commentstring").setup {}
+    end,
   },
 
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
-  -- Install a plugin
-  {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
-  },
-
   {
     "github/copilot.vim",
     lazy = false,
@@ -59,15 +56,11 @@ local plugins = {
     "windwp/nvim-ts-autotag",
     lazy = false,
     config = function()
-      require("nvim-ts-autotag").setup {
-        filetypes = { "html", "javascript", "javascriptreact", "typescriptreact", "svelte", "vue" },
-        enable_close_on_slash = false,
-      }
+      require("nvim-ts-autotag").setup()
     end,
   },
   { "akinsho/git-conflict.nvim", version = "*", config = true, lazy = false },
   { "f-person/git-blame.nvim", lazy = false },
-  { "b0o/schemastore.nvim" },
 }
 
 return plugins

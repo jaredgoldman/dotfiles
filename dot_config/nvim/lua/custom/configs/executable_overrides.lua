@@ -9,7 +9,6 @@ M.treesitter = {
     "html",
     "typescript",
     "tsx",
-    "c",
     "markdown",
     "markdown_inline",
     "php",
@@ -20,7 +19,10 @@ M.treesitter = {
   highlight = {
     enable = true,
   },
-  autotag = {
+  -- autotag = {
+  --   enable = true,
+  -- },
+  context_commentstring = {
     enable = true,
   },
 }
@@ -34,6 +36,7 @@ M.mason = {
     -- web dev stuff
     "css-lsp",
     "html-lsp",
+    "json-lsp",
     "typescript-language-server",
     "deno",
     "prettier",
@@ -41,6 +44,7 @@ M.mason = {
     "tailwindcss",
     "lua",
     "prisma-language-server",
+    "graphql",
   },
 }
 

@@ -5,8 +5,10 @@
 local M = {}
 
 ---@type Base46HLGroupsList
+
 M.override = {
   Comment = {
+    fg = "#8294c2", -- Lightened color
     italic = true,
   },
 }
