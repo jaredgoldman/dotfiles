@@ -42,15 +42,10 @@ local plugins = {
   {
     "github/copilot.vim",
     lazy = false,
-    enabled = false,
   },
   {
     "prettier/vim-prettier",
     run = "yarn install",
-  },
-
-  {
-    "mattn/emmet-vim",
   },
   {
     "windwp/nvim-ts-autotag",

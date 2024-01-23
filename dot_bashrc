@@ -1,6 +1,9 @@
 # ~/.bashrc
+export HISTSIZE=-1
+export HISTFILESIZE=-1
+
 # Keychain
-eval $(keychain --eval --quiet id_ed25519_pkr id_ed25519_gh id_rsa_do)
+eval $(keychain --eval --quiet id_ed25519_gh id_rsa_do id_ed25519_osf)
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -43,9 +46,16 @@ alias brightness="xrandr --output eDP-1 --brightness"
 ## Deploy CDK Locally
 alias buildcdk="cdk synth --output=./cdk.out.local"
 alias runcdk="sam local start-api -t ./cdk.out.local/admin-core.template.json --env-vars env.json"
-## Deploy DDK
-alias deploycdk="cd fe && pnpm i --frozen-lockfile && pnpm run build && cd .. && pnpm run cdk deploy --all --require-approval never"
 
+## Deploy DDK
+alias deploycdk="pnpm i && (cd fe && pnpm i --frozen-lockfile && pnpm run build) && pnpm run cdk deploy --all --require-approval never"
+
+## Elements/Bitcoin aliases
+alias b-dae="bitcoind -datadir=$HOME/bitcoindir"
+alias b-cli="bitcoin-cli -datadir=$HOME/bitcoindir"
+alias e-dae="elementsd -datadir=$HOME/elements"
+alias e-cli="elements-cli -datadir=$HOME/elements"
+alias e-qt="elements-qt -datadir=$HOME/elements"
 
 # -- Functions-- #
 

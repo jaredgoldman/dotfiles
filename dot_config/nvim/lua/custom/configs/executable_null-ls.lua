@@ -3,6 +3,7 @@
 ---------------------------------
 local diagnostics = require("null-ls").builtins.diagnostics
 local formatting = require("null-ls").builtins.formatting
+local code_actions = require("null-ls").builtins.code_actions
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 require("null-ls").setup {
@@ -13,6 +14,9 @@ require("null-ls").setup {
     formatting.prettier,
     formatting.stylua,
     diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
+    diagnostics.eslint_d.with { diagnostics_format = "#{m} [#{c}]" },
+    code_actions.eslint,
+    code_actions.eslint_d,
   },
   on_attach = function(client, bufnr)
     if client.supports_method "textDocument/formatting" then
