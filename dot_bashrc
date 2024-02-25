@@ -32,6 +32,7 @@ esac
 
 # Virtual env
 alias pyenv="source env/bin/activate"
+
 # NVIM
 alias vim="nvim"
 
@@ -43,19 +44,13 @@ alias whichwanip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias brightness="xrandr --output eDP-1 --brightness"
 
 # OSF
+# TODO: Update these
 ## Deploy CDK Locally
 alias buildcdk="cdk synth --output=./cdk.out.local"
 alias runcdk="sam local start-api -t ./cdk.out.local/admin-core.template.json --env-vars env.json"
 
 ## Deploy DDK
 alias deploycdk="pnpm i && (cd fe && pnpm i --frozen-lockfile && pnpm run build) && pnpm run cdk deploy --all --require-approval never"
-
-## Elements/Bitcoin aliases
-alias b-dae="bitcoind -datadir=$HOME/bitcoindir"
-alias b-cli="bitcoin-cli -datadir=$HOME/bitcoindir"
-alias e-dae="elementsd -datadir=$HOME/elements"
-alias e-cli="elements-cli -datadir=$HOME/elements"
-alias e-qt="elements-qt -datadir=$HOME/elements"
 
 # -- Functions-- #
 
