@@ -1,21 +1,17 @@
-require "core"
-
-local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
-
-if custom_init_path then
-  dofile(custom_init_path)
-end
-
-require("core.utils").load_mappings()
-
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-
--- bootstrap lazy.nvim!
-if not vim.loop.fs_stat(lazypath) then
-  require("core.bootstrap").gen_chadrc_template()
-  require("core.bootstrap").lazy(lazypath)
-end
-
-dofile(vim.g.base46_cache .. "defaults")
-vim.opt.rtp:prepend(lazypath)
-require "plugins"
+require("plugins")
+require("options")
+require("colorscheme")
+require("lsp")
+require("config.telescope")
+require("config.comment")
+require("config.mason")
+require("config.nvim-tree")
+require("config.themery")
+require("config.theme")
+require("config.lualine")
+require("config.fterm")
+require("config.harpoon")
+require("config.autopairs")
+require("config.autotags")
+-- require("config.dashboard")
+require("keymaps")
