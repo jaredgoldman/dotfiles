@@ -44,7 +44,7 @@ alias whichwanip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias brightness="xrandr --output eDP-1 --brightness"
 
 # OSF
-# TODO: Update these
+# TODO: Update these 
 ## Deploy CDK Locally
 alias buildcdk="cdk synth --output=./cdk.out.local"
 alias runcdk="sam local start-api -t ./cdk.out.local/admin-core.template.json --env-vars env.json"
@@ -52,7 +52,19 @@ alias runcdk="sam local start-api -t ./cdk.out.local/admin-core.template.json --
 ## Deploy DDK
 alias deploycdk="pnpm i && (cd fe && pnpm i --frozen-lockfile && pnpm run build) && pnpm run cdk deploy --all --require-approval never"
 
+
 # -- Functions-- #
+
+## Spansih translations
+function ts() {
+    input=$1
+    trans es:en "$input"
+}
+
+function te() {
+    input=$1
+    trans en:es "$input"
+}
 
 ## Delete old git branches
 function delete_old_branches() {
@@ -78,6 +90,21 @@ echo docker rmi $(docker images -q) -f"
 EOF
 }
 
+## Simple git commit shorcut
+function gc () {
+    git add .
+    git commit -m "$1"
+    git push
+}
+
+## Shortcut for pulling specific files from development
+function gcod () {
+    ## check if development branch exists
+    ## if not use develop
+    git fetch origin
+    git checkout origin/development "$1"
+}
+
 generate_ssh_key() {
     # Prompt for a custom string to append to the filename
     read -p "Enter a custom string to append to the key filename: " custom_string
@@ -92,6 +119,15 @@ generate_ssh_key() {
     # Print the public key
     echo "Public Key:"
     cat "$public_key"
+}
+
+# optimize all pngs into a single file
+optpngs() {
+  # prmpt user before executing
+  read -p "Are you sure you want to optimize these images? [y/n]" -n 1 -r
+    for file in *.png; do
+        optipng -o7 "$file"
+    done
 }
 
 # -- Variables -- #

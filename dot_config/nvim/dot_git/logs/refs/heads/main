@@ -1,8 +1,2 @@
-0000000000000000000000000000000000000000 94bf4f62c1ef66a102bb4322ef2d042cc936df6f jaredgoldman <jaredgoldmandev@gmail.com> 1712517137 -0400	clone: from github.com:jaredgoldman/neovim-configuration.git
-94bf4f62c1ef66a102bb4322ef2d042cc936df6f 75abeb74f7245c6c2cb3b3de261f8679e3486dca jaredgoldman <jaredgoldmandev@gmail.com> 1712524185 -0400	commit: feat: add sensible copilot accept and term
-75abeb74f7245c6c2cb3b3de261f8679e3486dca 34dfe4f69c18f8893082392fa7628a92020977f3 jaredgoldman <jaredgoldmandev@gmail.com> 1712525263 -0400	commit: feat: add harpoon
-34dfe4f69c18f8893082392fa7628a92020977f3 1080cfd16c5bf055656ee72b3469be7c7c91278d jaredgoldman <jaredgoldmandev@gmail.com> 1712525377 -0400	commit: feat: utilize telescope with harpoon
-1080cfd16c5bf055656ee72b3469be7c7c91278d bbafc099977587010ee3e233dcec2937a00b0894 jaredgoldman <jaredgoldmandev@gmail.com> 1712526110 -0400	commit: feat: add autopairs
-bbafc099977587010ee3e233dcec2937a00b0894 adf11320cbbf7751df240d67cbc294d2f5b836c2 jaredgoldman <jaredgoldmandev@gmail.com> 1712526708 -0400	commit: feat: done
-adf11320cbbf7751df240d67cbc294d2f5b836c2 9e0e8c0286396cbc22b5174d6d7d6400e7f6f032 jaredgoldman <jaredgoldmandev@gmail.com> 1712528994 -0400	commit: feat: update
-9e0e8c0286396cbc22b5174d6d7d6400e7f6f032 d2506d985df0b11acafb6eaa9292000db6abdfc0 jaredgoldman <jaredgoldmandev@gmail.com> 1712529346 -0400	commit: feat: add dashboard
+0000000000000000000000000000000000000000 d2506d985df0b11acafb6eaa9292000db6abdfc0 jaredgoldman <jaredgoldmandev@gmail.com> 1713796621 -0400	branch: Created from refs/remotes/origin/main
+d2506d985df0b11acafb6eaa9292000db6abdfc0 bbd51a0b85b76c62922764d9494398124771002c jaredgoldman <jaredgoldmandev@gmail.com> 1713796631 -0400	pull: Fast-forward
