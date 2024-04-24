@@ -37,21 +37,10 @@ alias pyenv="source env/bin/activate"
 alias vim="nvim"
 
 # Networking
-alias resetiptables="sudo iptables -F && sudo iptables -X && sudo iptables -t nat -F && sudo iptables -t nat -X && sudo iptables -t mangle -F && sudo iptables -t mangle -X && sudo iptables -P INPUT ACCEPT && sudo iptables -P FORWARD ACCEPT && sudo iptables -P OUTPUT ACCEPT"
 alias whichwanip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # Brightness
-alias brightness="xrandr --output eDP-1 --brightness"
-
-# OSF
-# TODO: Update these 
-## Deploy CDK Locally
-alias buildcdk="cdk synth --output=./cdk.out.local"
-alias runcdk="sam local start-api -t ./cdk.out.local/admin-core.template.json --env-vars env.json"
-
-## Deploy DDK
-alias deploycdk="pnpm i && (cd fe && pnpm i --frozen-lockfile && pnpm run build) && pnpm run cdk deploy --all --require-approval never"
-
+alias brightness="xrandr --output eDP1 --brightness"
 
 # -- Functions-- #
 
@@ -77,17 +66,6 @@ function delete_old_branches() {
             git branch -D "$branch"
         fi
     done
-}
-
-## Print userful docker commands
-function print_docker_commads() {
-    cat <<EOF
--- Docker god commands --
-# delete all containers
-sudo docker rm $(docker ps -aq) -f"
-# delete all images
-echo docker rmi $(docker images -q) -f"
-EOF
 }
 
 ## Simple git commit shorcut
