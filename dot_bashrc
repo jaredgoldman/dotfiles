@@ -55,7 +55,7 @@ alias deploycdk="pnpm i && (cd fe && pnpm i --frozen-lockfile && pnpm run build)
 
 # -- Functions-- #
 
-## Spansih translations
+## Spanish translations
 function ts() {
     input=$1
     trans es:en "$input"
@@ -105,7 +105,7 @@ function gcod () {
     git checkout origin/development "$1"
 }
 
-generate_ssh_key() {
+function generate_ssh_key() {
     # Prompt for a custom string to append to the filename
     read -p "Enter a custom string to append to the key filename: " custom_string
 
@@ -121,8 +121,15 @@ generate_ssh_key() {
     cat "$public_key"
 }
 
+## Convert all HEIC files in a dir to PNG
+function heictopng() {
+  for file in *.heic;
+    do heif-convert "$file" "${file%.heic}.png";
+  done
+}
+
 # optimize all pngs into a single file
-optpngs() {
+function optpngs() {
   # prmpt user before executing
   read -p "Are you sure you want to optimize these images? [y/n]" -n 1 -r
     for file in *.png; do
