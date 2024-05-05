@@ -1,2 +1,4 @@
 0000000000000000000000000000000000000000 d2506d985df0b11acafb6eaa9292000db6abdfc0 jaredgoldman <jaredgoldmandev@gmail.com> 1713796621 -0400	branch: Created from refs/remotes/origin/main
 d2506d985df0b11acafb6eaa9292000db6abdfc0 bbd51a0b85b76c62922764d9494398124771002c jaredgoldman <jaredgoldmandev@gmail.com> 1713796631 -0400	pull: Fast-forward
+bbd51a0b85b76c62922764d9494398124771002c 267f59c18a715d484f50c031133d4410a9d59a0a jaredgoldman <jaredgoldmandev@gmail.com> 1714331440 -0400	commit: feat: add ts/js react to formatter
+267f59c18a715d484f50c031133d4410a9d59a0a cda2cae5e51c414c18479a472461ceb5ee95f862 jaredgoldman <jaredgoldmandev@gmail.com> 1714913715 -0400	commit: feat: add ShowFilePath command

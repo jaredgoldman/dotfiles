@@ -82,7 +82,13 @@ require("lazy").setup({
 	},
 	"windwp/nvim-ts-autotag",
 	"nvim-treesitter/nvim-treesitter",
-	"mfussenegger/nvim-dap",
+	{
+		"mfussenegger/nvim-dap",
+		opt = true,
+		run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+	},
+	"jay-babu/mason-nvim-dap.nvim",
+	"microsoft/vscode-js-debug",
 	{
 		"stevearc/conform.nvim",
 		opts = {},
