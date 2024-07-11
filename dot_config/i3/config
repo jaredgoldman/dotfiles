@@ -42,7 +42,7 @@ exec --no-startup-id feh --bg-max /home/jgarch/media/wallpapers/tw.jpg
 # Assign applications to workspace 6
 assign [class="Arandr"] 6
 assign [class="Blueberry.py"] 6
-assign [class="Pavucontrol"] 6
+assign [class="pavucontrol"] 6
 assign [class="Element"] 4
 assign [class="Slack"] 4
 assign [class="Google-chrome"] 3
@@ -58,6 +58,7 @@ exec --no-startup-id flameshot
 exec --no-startup-id google-chrome-stable
 exec --no-startup-id slack
 exec --no-startup-id element-desktop
+exec --no-startup-id xmodmap ~/.Xmodmap
 
 # start a terminal
 bindsym $mod+Return exec alacritty
