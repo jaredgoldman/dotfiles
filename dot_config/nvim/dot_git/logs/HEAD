@@ -12,3 +12,8 @@ e8ee55430f13fb5ab50a28777a7f157429d23583 d2506d985df0b11acafb6eaa9292000db6abdfc
 d2506d985df0b11acafb6eaa9292000db6abdfc0 bbd51a0b85b76c62922764d9494398124771002c jaredgoldman <jaredgoldmandev@gmail.com> 1713796631 -0400	pull: Fast-forward
 bbd51a0b85b76c62922764d9494398124771002c 267f59c18a715d484f50c031133d4410a9d59a0a jaredgoldman <jaredgoldmandev@gmail.com> 1714331440 -0400	commit: feat: add ts/js react to formatter
 267f59c18a715d484f50c031133d4410a9d59a0a cda2cae5e51c414c18479a472461ceb5ee95f862 jaredgoldman <jaredgoldmandev@gmail.com> 1714913715 -0400	commit: feat: add ShowFilePath command
+cda2cae5e51c414c18479a472461ceb5ee95f862 92c08534aa665d3aa8ac8dbce96e1fb1e342ff54 jaredgoldman <jaredgoldmandev@gmail.com> 1716848319 -0400	commit: feat: add ToggleWrap
+92c08534aa665d3aa8ac8dbce96e1fb1e342ff54 b2f19111c595c7b5b378cf60f772a498a18c0f2b jaredgoldman <jaredgoldmandev@gmail.com> 1717594915 -0400	commit: feat: add toggle word wrap command
+b2f19111c595c7b5b378cf60f772a498a18c0f2b dba8b88fc34ce5698fa0b40a9d95b82a13c7beaa jaredgoldman <jaredgoldmandev@gmail.com> 1720725316 -0400	commit: feat: fix dashboard and remove medium theme
+dba8b88fc34ce5698fa0b40a9d95b82a13c7beaa 539437fbecea7ffe47c55eaee3285d7dae046b34 jaredgoldman <jaredgoldmandev@gmail.com> 1720725598 -0400	commit: feat: brighten line numbers
+539437fbecea7ffe47c55eaee3285d7dae046b34 24f8d2889ba397f2f1a7a64b54026732ef747a9e jaredgoldman <jaredgoldmandev@gmail.com> 1721427758 -0400	commit: feat:
