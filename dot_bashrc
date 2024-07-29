@@ -1,34 +1,16 @@
 # ~/.bashrc
-export HISTSIZE=-1
-export HISTFILESIZE=-1
 
 # Keychain
 eval $(keychain --eval --quiet id_ed25519_gh id_ed25519_osf)
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
-# Allow sbin for executables
-export PATH="/user/sbin:$PATH"
-
-# Node
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# pnpm
-export PNPM_HOME="/home/jgarch/.local/share/pnpm"
-
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
 
 # -- Aliases -- #
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 
 # Virtual env
 alias pyenv="source env/bin/activate"
@@ -115,6 +97,24 @@ function optpngs() {
     done
 }
 
-# -- Variables -- #
+# - PNPM && NVM -- #
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# -- Variables --#
+export HISTSIZE=-1
+export HISTFILESIZE=-1
 export SAM_CLI_TELEMETRY=0
 export EDITOR="nvim"
+export NVM_DIR="$HOME/.nvm"
+export PNPM_HOME="/home/jg/.local/share/pnpm"
+export PATH="/user/sbin:$PATH"
+
