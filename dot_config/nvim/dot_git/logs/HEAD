@@ -17,3 +17,4 @@ cda2cae5e51c414c18479a472461ceb5ee95f862 92c08534aa665d3aa8ac8dbce96e1fb1e342ff5
 b2f19111c595c7b5b378cf60f772a498a18c0f2b dba8b88fc34ce5698fa0b40a9d95b82a13c7beaa jaredgoldman <jaredgoldmandev@gmail.com> 1720725316 -0400	commit: feat: fix dashboard and remove medium theme
 dba8b88fc34ce5698fa0b40a9d95b82a13c7beaa 539437fbecea7ffe47c55eaee3285d7dae046b34 jaredgoldman <jaredgoldmandev@gmail.com> 1720725598 -0400	commit: feat: brighten line numbers
 539437fbecea7ffe47c55eaee3285d7dae046b34 24f8d2889ba397f2f1a7a64b54026732ef747a9e jaredgoldman <jaredgoldmandev@gmail.com> 1721427758 -0400	commit: feat:
+24f8d2889ba397f2f1a7a64b54026732ef747a9e 697bc4bb2ce93d67817302419972a7d23916b732 Jared Goldman <jaredgoldmandev@gmail.com> 1722277348 -0400	commit: feat: add stop_after_first
