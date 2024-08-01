@@ -57,7 +57,7 @@ exec --no-startup-id element-desktop
 # start a terminal
 bindsym $mod+Return exec alacritty
 # start a brower window
-bindsym $mod+b exec google-chrome-stable --force-device-scale-factor=1.5
+bindsym $mod+b exec google-chrome-stable --force-device-scale-factor=1.25
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
