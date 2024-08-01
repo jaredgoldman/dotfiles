@@ -1,0 +1,4 @@
+import = ["/home/jgarch/.config/alacritty/themes/themes/hyper.toml"]
+
+[font]
+size = 12
