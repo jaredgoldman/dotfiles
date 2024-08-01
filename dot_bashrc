@@ -1,12 +1,11 @@
 # ~/.bashrc
-
+eval "$(starship init bash)"
 # Keychain
 eval $(keychain --eval --quiet id_ed25519_gh id_ed25519_osf)
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 PS1='[\u@\h \W]\$ '
-
 
 # -- Aliases -- #
 alias ls='ls --color=auto'
@@ -50,7 +49,19 @@ function delete_old_branches() {
     done
 }
 
-## Simple git commit shorcut
+## Function to perform an interactive rebase
+irebase() {
+    if [ -z "$1" ]; then
+        echo "Error: No branch name provided."
+        echo "Usage: irebase <branch-name>"
+        return 1
+    fi
+
+    local branch_name=$1
+    git rebase -i $(git merge-base "$branch_name" HEAD)
+}
+
+## Simple git commit shortcut
 function gc () {
     git add .
     git commit -m "$1"
@@ -70,8 +81,8 @@ function generate_ssh_key() {
     read -p "Enter a custom string to append to the key filename: " custom_string
 
     # Define the key file names
-    private_key="~/.ssh/id_ed25519_$custom_string"
-    public_key="~/.ssh/id_ed25519_$custom_string.pub"
+    private_key="$HOME/.ssh/id_ed25519_$custom_string"
+    public_key="$HOME/.ssh/id_ed25519_$custom_string.pub"
 
     # Generate the ED25519 key pair
     ssh-keygen -t ed25519 -f "$private_key" -N ""
@@ -88,22 +99,26 @@ function heictopng() {
   done
 }
 
-# optimize all pngs into a single file
+# Optimize all PNGs into a single file
 function optpngs() {
-  # prmpt user before executing
-  read -p "Are you sure you want to optimize these images? [y/n]" -n 1 -r
+  # Prompt user before executing
+  read -p "Are you sure you want to optimize these images? [y/n] " -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
     for file in *.png; do
-        optipng -o7 "$file"
+      optipng -o7 "$file"
     done
+  fi
 }
 
 # - PNPM && NVM -- #
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
+export NVM_DIR="$HOME/.nvm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
+
+# Load NVM and add to PATH
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -114,7 +129,13 @@ export HISTSIZE=-1
 export HISTFILESIZE=-1
 export SAM_CLI_TELEMETRY=0
 export EDITOR="nvim"
-export NVM_DIR="$HOME/.nvm"
-export PNPM_HOME="/home/jg/.local/share/pnpm"
-export PATH="/user/sbin:$PATH"
+export PATH="/usr/sbin:$PATH"
 
+
+# pnpm
+export PNPM_HOME="/home/jg/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
