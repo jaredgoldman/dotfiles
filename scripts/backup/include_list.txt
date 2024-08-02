@@ -1,11 +1,13 @@
-~/Documents
-~/Downloads
-~/media
-~/Pictures
-~/Videos
-~/Desktop
-~/dev
-~/.config
+# Include specific directories
++ /home/jg/Documents
++ /home/jg/Downloads
++ /home/jg/media
++ /home/jg/Pictures
++ /home/jg/Videos
++ /home/jg/Desktop
++ /home/jg/dev
++ /home/jg/.config
 
 # Exclude everything else
 - *
+
