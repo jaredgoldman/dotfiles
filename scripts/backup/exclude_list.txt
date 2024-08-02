@@ -1,0 +1,9 @@
+# Exclude all node_modules directories
+**/node_modules
+
+# Exclude all cache files and directories
+**/.cache
+**/cache
+**/*_cache
+**/*.tmp
+**/*.log

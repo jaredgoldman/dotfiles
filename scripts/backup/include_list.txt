@@ -1,0 +1,11 @@
+~/Documents
+~/Downloads
+~/media
+~/Pictures
+~/Videos
+~/Desktop
+~/dev
+~/.config
+
+# Exclude everything else
+- *
