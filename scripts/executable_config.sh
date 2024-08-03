@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e  # Exit immediately if a command exits with a non-zero status
 
 # Function to handle errors
@@ -25,14 +24,14 @@ fi
 # Check if chezmoi is initialized
 if [ ! -d "$HOME/.local/share/chezmoi" ]; then
   echo "Initializing chezmoi..."
-  chezmoi init || error_exit "Failed to initialize chezmoi"
+  ./bin/chezmoi init || error_exit "Failed to initialize chezmoi"
 else
   echo "chezmoi is already initialized."
 fi
 
 # Apply chezmoi configuration
 echo "Applying chezmoi configuration..."
-chezmoi apply || error_exit "Failed to apply chezmoi configuration"
+./bin/chezmoi apply || error_exit "Failed to apply chezmoi configuration"
 
 # Install yay if not installed
 if ! command -v yay &> /dev/null; then
@@ -45,15 +44,18 @@ else
   echo "yay is already installed."
 fi
 
-# Download and install packages from pkglist.txt using pacman and yay
-if [ -f pkglist.txt ]; then
-  echo "Installing packages from pkglist.txt using pacman..."
-  pacman -S --needed - < pkglist.txt || error_exit "Failed to install packages using pacman from pkglist.txt"
+# Path to pkglist.txt
+PKGLIST="$HOME/pkglist.txt"
 
-  echo "Installing packages from pkglist.txt using yay..."
-  yay -S --needed - < pkglist.txt || error_exit "Failed to install packages using yay from pkglist.txt"
+# Install packages from pkglist.txt using pacman and yay
+if [ -f "$PKGLIST" ]; then
+  echo "Installing packages from $PKGLIST using pacman..."
+  pacman -S --needed - < "$PKGLIST" || echo "Some packages were not found in pacman, trying with yay..."
+
+  echo "Installing remaining packages from $PKGLIST using yay..."
+  yay -S --needed - < "$PKGLIST" || error_exit "Failed to install some packages using yay from $PKGLIST"
 else
-  error_exit "pkglist.txt not found"
+  error_exit "$PKGLIST not found"
 fi
 
 echo "Configuration sync completed successfully!"
