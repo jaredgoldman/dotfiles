@@ -14,7 +14,8 @@ set $mod Mod1
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:Fira Code 14
+
+font $(~/.config/i3/set_i3_font.sh)
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -32,7 +33,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Add a background image
-exec --no-startup-id feh --bg-max /home/jgarch/media/wallpapers/tw.jpg
+exec_always feh --bg-fill /home/jg/wallpaper.jpg
 
 # Assign applications to workspace 6
 assign [class="Arandr"] 6
@@ -50,9 +51,10 @@ exec --no-startup-id alacritty
 exec --no-startup-id pavucontrol
 exec --no-startup-id systemctl start docker
 exec --no-startup-id flameshot
-exec --no-startup-id google-chrome-stable
+exec --no-startup-id google-chrome-stable --force-device-scale-factor=1.25
 exec --no-startup-id slack
 exec --no-startup-id element-desktop
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 # start a terminal
 bindsym $mod+Return exec alacritty
@@ -212,11 +214,15 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Setting titlebar colors
+client.focused          #000000 #000000 #FFFFFF #FFFFFF #000000
+client.unfocused        #000000 #000000 #888888 #888888 #000000
+client.urgent           #000000 #000000 #FF0000 #FF0000 #000000
+client.placeholder      #000000 #000000 #000000 #000000 #000000
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3status
         position top
-        font pango:Roboto Mono 12
-
+        font pango:Fira Code
 }
