@@ -25,14 +25,14 @@ fi
 # Check if chezmoi is initialized
 if [ ! -d "$HOME/.local/share/chezmoi" ]; then
   echo "Initializing chezmoi..."
-  ./bin/chezmoi init || error_exit "Failed to initialize chezmoi"
+  chezmoi init || error_exit "Failed to initialize chezmoi"
 else
   echo "chezmoi is already initialized."
 fi
 
 # Apply chezmoi configuration
 echo "Applying chezmoi configuration..."
-./bin/chezmoi apply || error_exit "Failed to apply chezmoi configuration"
+chezmoi apply || error_exit "Failed to apply chezmoi configuration"
 
 # Install yay if not installed
 if ! command -v yay &> /dev/null; then
