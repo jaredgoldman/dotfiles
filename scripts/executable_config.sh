@@ -45,15 +45,15 @@ else
   echo "yay is already installed."
 fi
 
-# Download and install packages from ~/pkglist.txt using pacman and yay
-if [ -f ~/pkglist.txt ]; then
-  echo "Installing packages from ~/pkglist.txt using pacman..."
-  pacman -S --needed - < ~/pkglist.txt || error_exit "Failed to install packages using pacman from pkglist.txt"
+# Download and install packages from pkglist.txt using pacman and yay
+if [ -f pkglist.txt ]; then
+  echo "Installing packages from pkglist.txt using pacman..."
+  pacman -S --needed - < pkglist.txt || error_exit "Failed to install packages using pacman from pkglist.txt"
 
-  echo "Installing packages from ~/pkglist.txt using yay..."
-  yay -S --needed - < ~/pkglist.txt || error_exit "Failed to install packages using yay from pkglist.txt"
+  echo "Installing packages from pkglist.txt using yay..."
+  yay -S --needed - < pkglist.txt || error_exit "Failed to install packages using yay from pkglist.txt"
 else
-  error_exit "~/pkglist.txt not found"
+  error_exit "pkglist.txt not found"
 fi
 
 echo "Configuration sync completed successfully!"
