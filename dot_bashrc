@@ -1,11 +1,5 @@
 # ~/.bashrc
-eval "$(starship init bash)"
-# Keychain
-eval $(keychain --eval --quiet id_ed25519_gh id_ed25519_osf)
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-PS1='[\u@\h \W]\$ '
-
+#
 # -- Aliases -- #
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -115,6 +109,9 @@ function optpngs() {
   fi
 }
 
+# Keychain
+eval $(keychain --eval --quiet id_ed25519_gh id_ed25519_osf)
+
 # -- Variables --#
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -131,3 +128,8 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+PS1='[\u@\h \W]\$ '
+eval "$(starship init bash)"
