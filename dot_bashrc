@@ -2,7 +2,6 @@
 eval "$(starship init bash)"
 # Keychain
 eval $(keychain --eval --quiet id_ed25519_gh id_ed25519_osf)
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 PS1='[\u@\h \W]\$ '
@@ -11,26 +10,40 @@ PS1='[\u@\h \W]\$ '
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
-# Virtual env
+# Virtual python env
 alias pyenv="source env/bin/activate"
-
-# NVIM
-alias vim="nvim"
 
 # Networking
 alias whichwanip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # Brightness
-alias brightness="xrandr --output eDP1 --brightness"
+## Function to get the display name dynamically
+get_display_name() {
+  xrandr --listmonitors | grep -Po '(?<=\s)\S*(?=\s\([0-9]+)' | head -n 1
+}
+
+## Function to set the brightness
+brightness() {
+  local display_name=$(get_display_name)
+  if [ -n "$display_name" ]; then
+    xrandr --output "$display_name" --brightness "$1"
+  else
+    echo "No display found."
+  fi
+}
+
+# Usage example:
+# brightness 0.8
 
 # -- Functions-- #
 
-## Spanish translations
+## Spanish - English translations
 function ts() {
     input=$1
     trans es:en "$input"
 }
 
+## English - Spanish translations
 function te() {
     input=$1
     trans en:es "$input"
@@ -61,21 +74,12 @@ irebase() {
     git rebase -i $(git merge-base "$branch_name" HEAD)
 }
 
-## Simple git commit shortcut
-function gc () {
-    git add .
-    git commit -m "$1"
-    git push
+## Function to cherry-pick a commit
+gcp() {
+  git cherry-pick "$1"
 }
 
-## Shortcut for pulling specific files from development
-function gcod () {
-    ## check if development branch exists
-    ## if not use develop
-    git fetch origin
-    git checkout origin/development "$1"
-}
-
+## Function to generate an SSH key pair
 function generate_ssh_key() {
     # Prompt for a custom string to append to the filename
     read -p "Enter a custom string to append to the key filename: " custom_string
@@ -99,7 +103,7 @@ function heictopng() {
   done
 }
 
-# Optimize all PNGs into a single file
+## Optimize all PNGs into a single file
 function optpngs() {
   # Prompt user before executing
   read -p "Are you sure you want to optimize these images? [y/n] " -n 1 -r
@@ -111,31 +115,19 @@ function optpngs() {
   fi
 }
 
-# - PNPM && NVM -- #
+# -- Variables --#
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
-
-# Load NVM and add to PATH
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# -- Variables --#
 export HISTSIZE=-1
 export HISTFILESIZE=-1
 export SAM_CLI_TELEMETRY=0
 export EDITOR="nvim"
 export PATH="/usr/sbin:$PATH"
 
-
-# pnpm
-export PNPM_HOME="/home/jg/.local/share/pnpm"
+# Load NVM and add to PATH
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
