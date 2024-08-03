@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 set -e  # Exit immediately if a command exits with a non-zero status
@@ -24,7 +25,18 @@ install_yay() {
 # Function to update pkglist.txt
 update_pkglist() {
   echo "Updating package list..."
-  pacman -Qqet > "$PKGLIST" || error_exit "Failed to update package list"
+
+  # List explicitly installed packages (excluding dependencies)
+  pacman -Qqe > /tmp/pkglist_pacman.txt
+
+  # List explicitly installed AUR packages (excluding dependencies)
+  yay -Qqe > /tmp/pkglist_yay.txt
+
+  # Combine both lists, remove duplicates, and save to pkglist.txt
+  cat /tmp/pkglist_pacman.txt /tmp/pkglist_yay.txt | sort -u > "$PKGLIST"
+
+  # Clean up temporary files
+  rm /tmp/pkglist_pacman.txt /tmp/pkglist_yay.txt
 }
 
 # Check if script is run as root
@@ -61,24 +73,18 @@ else
 fi
 
 # Path to pkglist.txt
-SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+SCRIPT_DIR=$(dirname "$0")
 PKGLIST="$SCRIPT_DIR/pkglist.txt"
 
-# Install packages from pkglist.txt using pacman
+# Install packages from pkglist.txt using pacman and yay
 if [ -f "$PKGLIST" ]; then
   echo "Installing packages from $PKGLIST using pacman..."
   pacman -S --needed - < "$PKGLIST" || echo "Some packages were not found in pacman, trying with yay..."
+
+  echo "Installing remaining packages from $PKGLIST using yay..."
+  yay -S --needed - < "$PKGLIST" || error_exit "Failed to install some packages using yay from $PKGLIST"
 else
   error_exit "$PKGLIST not found"
-fi
-
-# Get the list of missing packages
-MISSING_PACKAGES=$(comm -23 <(sort "$PKGLIST") <(pacman -Qq))
-
-# Install missing packages with yay
-if [ -n "$MISSING_PACKAGES" ]; then
-  echo "Installing remaining packages from $PKGLIST using yay..."
-  echo "$MISSING_PACKAGES" | xargs -r sudo -u "$SUDO_USER" yay -S --needed || error_exit "Failed to install some packages using yay from $PKGLIST"
 fi
 
 # Update the package list after installations
