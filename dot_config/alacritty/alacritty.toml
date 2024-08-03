@@ -1,4 +1,41 @@
-import = ["/home/jgarch/.config/alacritty/themes/themes/hyper.toml"]
+import = ["/home/jg/.config/alacritty/themes/themes/campbell.toml"]
 
 [font]
 size = 12
+normal = { family = "JetBrains Mono", style = "Regular" }
+bold = { family = "JetBrains Mono", style = "Bold" }
+italic = { family = "JetBrains Mono", style = "Italic" }
+
+# cursor stuff
+[cursor.style]
+shape = "Block"        #   -   Beam |, Block ▇, Underline _
+blinking = "On"        #   - Never, Off, On, Always
+
+# Specifying a `duration` of `0` will disable the visual bell.
+[bell]
+animation = "Linear"
+duration = 500
+color = "#b59b9c"
+
+[window.dimensions]
+columns = 150
+lines = 45
+
+[window.padding]
+x = 0
+y = 0
+
+[window]
+dynamic_padding = false
+decorations = "buttonless"     # buttonless, transparent, full, none
+startup_mode = "Windowed"    # SimpleFullscreen, Fullscreen, Maximized, Windowed
+dynamic_title = true
+blur = true
+
+# clipboard stuff
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true
+
+[scrolling]
+multiplier = 20
