@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 set -e  # Exit immediately if a command exits with a non-zero status
@@ -45,14 +44,14 @@ fi
 # Check if chezmoi is initialized
 if [ ! -d "$HOME/.local/share/chezmoi" ]; then
   echo "Initializing chezmoi..."
-  ./bin/chezmoi init || error_exit "Failed to initialize chezmoi"
+  chezmoi init || error_exit "Failed to initialize chezmoi"
 else
   echo "chezmoi is already initialized."
 fi
 
 # Apply chezmoi configuration
 echo "Applying chezmoi configuration..."
-./bin/chezmoi apply || error_exit "Failed to apply chezmoi configuration"
+chezmoi apply || error_exit "Failed to apply chezmoi configuration"
 
 # Install yay if not installed
 if ! command -v yay &> /dev/null; then
@@ -62,7 +61,8 @@ else
 fi
 
 # Path to pkglist.txt
-PKGLIST="$HOME/pkglist.txt"
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+PKGLIST="$SCRIPT_DIR/pkglist.txt"
 
 # Install packages from pkglist.txt using pacman
 if [ -f "$PKGLIST" ]; then
@@ -72,9 +72,14 @@ else
   error_exit "$PKGLIST not found"
 fi
 
-# Install remaining packages from pkglist.txt using yay
-echo "Installing remaining packages from $PKGLIST using yay..."
-grep -vxFf <(pacman -Qq) "$PKGLIST" | xargs -r sudo -u "$SUDO_USER" yay -S --needed || error_exit "Failed to install some packages using yay from $PKGLIST"
+# Get the list of missing packages
+MISSING_PACKAGES=$(comm -23 <(sort "$PKGLIST") <(pacman -Qq))
+
+# Install missing packages with yay
+if [ -n "$MISSING_PACKAGES" ]; then
+  echo "Installing remaining packages from $PKGLIST using yay..."
+  echo "$MISSING_PACKAGES" | xargs -r sudo -u "$SUDO_USER" yay -S --needed || error_exit "Failed to install some packages using yay from $PKGLIST"
+fi
 
 # Update the package list after installations
 update_pkglist
