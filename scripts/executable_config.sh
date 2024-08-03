@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 set -e  # Exit immediately if a command exits with a non-zero status
@@ -21,6 +22,12 @@ install_yay() {
   sudo -u "$SUDO_USER" rm -rf "$YAY_DIR"
 }
 
+# Function to update pkglist.txt
+update_pkglist() {
+  echo "Updating package list..."
+  pacman -Qqet > "$PKGLIST" || error_exit "Failed to update package list"
+}
+
 # Check if script is run as root
 if [ "$EUID" -ne 0 ]; then
   error_exit "This script must be run as root. Please use sudo."
@@ -38,14 +45,14 @@ fi
 # Check if chezmoi is initialized
 if [ ! -d "$HOME/.local/share/chezmoi" ]; then
   echo "Initializing chezmoi..."
-  chezmoi init || error_exit "Failed to initialize chezmoi"
+  ./bin/chezmoi init || error_exit "Failed to initialize chezmoi"
 else
   echo "chezmoi is already initialized."
 fi
 
 # Apply chezmoi configuration
 echo "Applying chezmoi configuration..."
-chezmoi apply || error_exit "Failed to apply chezmoi configuration"
+./bin/chezmoi apply || error_exit "Failed to apply chezmoi configuration"
 
 # Install yay if not installed
 if ! command -v yay &> /dev/null; then
@@ -54,16 +61,23 @@ else
   echo "yay is already installed."
 fi
 
-# Install packages from pkglist.txt using pacman and yay
-if [ -f "pkglist.txt" ]; then
-  echo "Installing packages from pkglist.txt using pacman..."
-  pacman -S --needed - < "pkglist.txt" || echo "Some packages were not found in pacman, trying with yay..."
+# Path to pkglist.txt
+PKGLIST="$HOME/pkglist.txt"
 
-  echo "Installing remaining packages from pkglist.txt using yay..."
-  yay -S --needed - < "pkglist.txt" || error_exit "Failed to install some packages using yay from $PKGLIST"
+# Install packages from pkglist.txt using pacman
+if [ -f "$PKGLIST" ]; then
+  echo "Installing packages from $PKGLIST using pacman..."
+  pacman -S --needed - < "$PKGLIST" || echo "Some packages were not found in pacman, trying with yay..."
 else
-  error_exit "pkglist.txt not found"
+  error_exit "$PKGLIST not found"
 fi
+
+# Install remaining packages from pkglist.txt using yay
+echo "Installing remaining packages from $PKGLIST using yay..."
+grep -vxFf <(pacman -Qq) "$PKGLIST" | xargs -r sudo -u "$SUDO_USER" yay -S --needed || error_exit "Failed to install some packages using yay from $PKGLIST"
+
+# Update the package list after installations
+update_pkglist
 
 echo "Configuration sync completed successfully!"
 
