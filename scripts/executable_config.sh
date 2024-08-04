@@ -1,7 +1,4 @@
-
 #!/bin/bash
-
-set -e  # Exit immediately if a command exits with a non-zero status
 
 # Function to handle errors
 error_exit() {
@@ -9,40 +6,17 @@ error_exit() {
   exit 1
 }
 
-# Function to install yay as non-root user
+# Function to install yay
 install_yay() {
-  local USER_HOME=$(eval echo ~"$SUDO_USER")
-  local YAY_DIR="$USER_HOME/yay"
+  local YAY_DIR="$HOME/yay"
 
   echo "Installing yay..."
-  sudo -u "$SUDO_USER" git clone https://aur.archlinux.org/yay.git "$YAY_DIR" || error_exit "Failed to clone yay repository"
+  git clone https://aur.archlinux.org/yay.git "$YAY_DIR" || error_exit "Failed to clone yay repository"
   cd "$YAY_DIR"
-  sudo -u "$SUDO_USER" makepkg -si || error_exit "Failed to install yay"
+  makepkg -si || error_exit "Failed to install yay"
   cd -
-  sudo -u "$SUDO_USER" rm -rf "$YAY_DIR"
+  rm -rf "$YAY_DIR"
 }
-
-# Function to update pkglist.txt
-update_pkglist() {
-  echo "Updating package list..."
-
-  # List explicitly installed packages (excluding dependencies)
-  pacman -Qqe > /tmp/pkglist_pacman.txt
-
-  # List explicitly installed AUR packages (excluding dependencies)
-  yay -Qqe > /tmp/pkglist_yay.txt
-
-  # Combine both lists, remove duplicates, and save to pkglist.txt
-  cat /tmp/pkglist_pacman.txt /tmp/pkglist_yay.txt | sort -u > "$PKGLIST"
-
-  # Clean up temporary files
-  rm /tmp/pkglist_pacman.txt /tmp/pkglist_yay.txt
-}
-
-# Check if script is run as root
-if [ "$EUID" -ne 0 ]; then
-  error_exit "This script must be run as root. Please use sudo."
-fi
 
 # Check if chezmoi is installed
 if ! command -v chezmoi &> /dev/null; then
@@ -61,9 +35,9 @@ else
   echo "chezmoi is already initialized."
 fi
 
-# Apply chezmoi configuration
-echo "Applying chezmoi configuration..."
-chezmoi apply || error_exit "Failed to apply chezmoi configuration"
+# # Apply chezmoi configuration
+# echo "Applying chezmoi configuration..."
+# chezmoi apply || error_exit "Failed to apply chezmoi configuration"
 
 # Install yay if not installed
 if ! command -v yay &> /dev/null; then
@@ -76,18 +50,37 @@ fi
 SCRIPT_DIR=$(dirname "$0")
 PKGLIST="$SCRIPT_DIR/pkglist.txt"
 
-# Install packages from pkglist.txt using pacman and yay
-if [ -f "$PKGLIST" ]; then
-  echo "Installing packages from $PKGLIST using pacman..."
-  pacman -S --needed - < "$PKGLIST" || echo "Some packages were not found in pacman, trying with yay..."
+# Split the package list into pacman and yay packages
+PKGLIST_PACMAN="$HOME/pkglist_pacman.txt"
+PKGLIST_YAY="$HOME/pkglist_yay.txt"
 
-  echo "Installing remaining packages from $PKGLIST using yay..."
-  yay -S --needed - < "$PKGLIST" || error_exit "Failed to install some packages using yay from $PKGLIST"
-else
-  error_exit "$PKGLIST not found"
+# Clear old lists
+> "$PKGLIST_PACMAN"
+> "$PKGLIST_YAY"
+
+# Separate packages
+while IFS= read -r pkg; do
+  if pacman -Si "$pkg" &> /dev/null; then
+    echo "$pkg" >> "$PKGLIST_PACMAN"
+  else
+    echo "$pkg" >> "$PKGLIST_YAY"
+  fi
+done < "$PKGLIST"
+
+# Run the pacman installation as root
+if [ -s "$PKGLIST_PACMAN" ]; then
+  echo "Installing packages from $PKGLIST_PACMAN using pacman..."
+  sudo pacman -S --needed - < "$PKGLIST_PACMAN" || echo "Some packages were not found in pacman, they might need to be installed with yay."
+fi
+
+# Install packages from pkglist_yay.txt using yay as non-root
+if [ -s "$PKGLIST_YAY" ]; then
+  echo "Installing packages from $PKGLIST_YAY using yay..."
+  yay -S --needed $PKGLIST_YAY || error_exit "Failed to install some packages using yay from $PKGLIST_YAY"
 fi
 
 # Update the package list after installations
+source "$HOME/.bashrc"
 update_pkglist
 
 echo "Configuration sync completed successfully!"

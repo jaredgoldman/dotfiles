@@ -1,4 +1,3 @@
-[1m[33m -> [0m[0mAvoid running yay as root/sudo.
 alacritty
 amd-ucode
 arandr
@@ -39,6 +38,7 @@ gtk2
 hplip
 htop
 i3blocks
+i3lock
 i3status
 i3-wm
 intel-media-driver
@@ -75,6 +75,7 @@ nginx
 nmap
 nosql-workbench
 obs-studio
+openshift-source-to-image
 optipng
 pavucontrol
 pgadmin4-desktop
@@ -118,12 +119,12 @@ wireguard-tools
 wireless_tools
 wireplumber
 xclip
-xdg-utils
 xf86-video-amdgpu
 xf86-video-ati
 xf86-video-intel
 xf86-video-nouveau
 xf86-video-vmware
+xorg-server
 xorg-server-devel
 xorg-xdpyinfo
 xorg-xinit
@@ -132,5 +133,6 @@ xournalpp
 xterm
 yarn
 yay
+yay-debug
 zoom
 zram-generator
