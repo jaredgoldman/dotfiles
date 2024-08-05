@@ -74,8 +74,8 @@ network-manager-applet
 nginx
 nmap
 nosql-workbench
+obsidian
 obs-studio
-openshift-source-to-image
 optipng
 pavucontrol
 pgadmin4-desktop
@@ -119,12 +119,12 @@ wireguard-tools
 wireless_tools
 wireplumber
 xclip
+xdg-utils
 xf86-video-amdgpu
 xf86-video-ati
 xf86-video-intel
 xf86-video-nouveau
 xf86-video-vmware
-xorg-server
 xorg-server-devel
 xorg-xdpyinfo
 xorg-xinit
@@ -133,6 +133,5 @@ xournalpp
 xterm
 yarn
 yay
-yay-debug
 zoom
 zram-generator
