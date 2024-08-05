@@ -35,10 +35,6 @@ else
   echo "chezmoi is already initialized."
 fi
 
-# # Apply chezmoi configuration
-# echo "Applying chezmoi configuration..."
-# chezmoi apply || error_exit "Failed to apply chezmoi configuration"
-
 # Install yay if not installed
 if ! command -v yay &> /dev/null; then
   install_yay
@@ -76,7 +72,7 @@ fi
 # Install packages from pkglist_yay.txt using yay as non-root
 if [ -s "$PKGLIST_YAY" ]; then
   echo "Installing packages from $PKGLIST_YAY using yay..."
-  yay -S --needed $PKGLIST_YAY || error_exit "Failed to install some packages using yay from $PKGLIST_YAY"
+  xargs -a "$PKGLIST_YAY" yay -S --needed || error_exit "Failed to install some packages using yay from $PKGLIST_YAY"
 fi
 
 # Update the package list after installations
@@ -84,4 +80,3 @@ source "$HOME/.bashrc"
 update_pkglist
 
 echo "Configuration sync completed successfully!"
-
