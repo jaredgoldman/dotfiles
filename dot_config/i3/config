@@ -41,6 +41,7 @@ assign [class="pavucontrol"] 6
 assign [class="Element"] 4
 assign [class="Slack"] 4
 assign [class="Google-chrome"] 3
+assign [class="obsidian"] 5
 
 # Startup stuff
 exec --no-startup-id arandr /home/jgarch/.screenlayout/mexico.sh
@@ -54,6 +55,7 @@ exec --no-startup-id google-chrome-stable --force-device-scale-factor=$(~/.confi
 exec --no-startup-id slack
 exec --no-startup-id element-desktop
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
+exec --no-startup-id obsidian
 
 # start a terminal
 bindsym $mod+Return exec alacritty
