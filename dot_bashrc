@@ -10,6 +10,9 @@ alias pyenv="source env/bin/activate"
 # Networking
 alias whichwanip="dig +short myip.opendns.com @resolver1.opendns.com"
 
+# -- Settings -- #
+set -o vi
+
 # Brightness
 ## Function to get the display name dynamically
 get_display_name() {
