@@ -2,3 +2,4 @@
 inoremap <A-l> <Esc>
 
 " TODO: Add more mappings here
+clipboard=unnamedplus
