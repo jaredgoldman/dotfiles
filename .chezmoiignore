@@ -1,5 +1,0 @@
-.git
-node_modules
-.cache/
-*.swp
-scripts/backup/passphrase.txt
