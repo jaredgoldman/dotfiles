@@ -35,6 +35,10 @@ else
   echo "chezmoi is already initialized."
 fi
 
+# Pull and apply the latest chezmoi changes
+echo "Pulling and applying the latest chezmoi changes..."
+chezmoi update || error_exit "Failed to update chezmoi configuration"
+
 # Install yay if not installed
 if ! command -v yay &> /dev/null; then
   install_yay
@@ -78,5 +82,3 @@ fi
 # Update the package list after installations
 source "$HOME/.bashrc"
 update_pkglist
-
-echo "Configuration sync completed successfully!"
