@@ -1,5 +1,33 @@
 # ~/.bashrc
-#
+
+# Get the screen resolution of the primary display
+SCREEN_RES=$(xrandr | grep -w 'connected primary' | awk '{print $4}' | sed 's/+.*//')
+
+# -- Font -- #
+# If no primary display found, fallback to the first active resolution found
+if [ -z "$SCREEN_RES" ]; then
+    SCREEN_RES=$(xrandr | grep '*' | awk '{print $1}')
+fi
+
+# Set font size based on screen resolution
+case "$SCREEN_RES" in
+    "3840x2160")
+        FONT_SIZE="16"
+        ;;
+    "2560x1440")
+        FONT_SIZE="14"
+        ;;
+    "1920x1080")
+        FONT_SIZE="12"
+        ;;
+    *)
+        FONT_SIZE="10"  # Default font size for unknown resolutions
+        ;;
+esac
+
+# Set the I3_FONT environment variable
+export FONT="pango:Fira Code $FONT_SIZE"
+
 # -- Aliases -- #
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -9,9 +37,6 @@ alias pyenv="source env/bin/activate"
 
 # Networking
 alias whichwanip="dig +short myip.opendns.com @resolver1.opendns.com"
-
-# -- Settings -- #
-set -o vi
 
 # Brightness
 ## Function to get the display name dynamically
@@ -32,7 +57,7 @@ brightness() {
 # Usage example:
 # brightness 0.8
 
-# -- Functions-- #
+# -- Functions -- #
 
 ## Spanish - English translations
 function ts() {
@@ -155,7 +180,7 @@ update_pkglist() {
 # Keychain
 eval $(keychain --eval --quiet id_ed25519_gh id_ed25519_osf)
 
-# -- Variables --#
+# -- Variables -- #
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export HISTSIZE=-1
@@ -163,6 +188,7 @@ export HISTFILESIZE=-1
 export SAM_CLI_TELEMETRY=0
 export EDITOR="nvim"
 export PATH="/usr/sbin:$PATH"
+export FONT="$I3_FONT"
 
 # Load NVM and add to PATH
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
