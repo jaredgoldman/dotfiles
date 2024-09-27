@@ -11,7 +11,7 @@ require("mason").setup({
 -- A list of servers to automatically install if they're not already installed
 require("mason-lspconfig").setup({
 	ensure_installed = {
-		"tsserver",
+		"ts_ls",
 		"jsonls",
 		"lua_ls",
 	},
