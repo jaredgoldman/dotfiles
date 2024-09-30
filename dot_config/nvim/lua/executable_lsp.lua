@@ -30,7 +30,7 @@ local on_attach = function(client, bufnr)
 end
 
 local servers = {
-  "tsserver",
+  "ts_ls",
   "lua_ls",
   "eslint",
   "jsonls"
@@ -57,14 +57,32 @@ capabilities.textDocument.completion.completionItem = {
 }
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup({
+  local config = {
     on_attach = on_attach,
     capabilities = capabilities,
-    -- For suppressing vim error messages in config
-    settings = {
+  }
+
+  -- Server-specific settings
+  if lsp == "lua_ls" then
+    config.settings = {
       Lua = {
         diagnostics = { globals = { "vim" } },
       },
-    },
-  })
+    }
+    -- elseif lsp == "jsonls" then
+    --   config.settings = {
+    --     commands = {
+    --       Format = {
+    --         function()
+    --           vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
+    --         end
+    --       }
+    --     },
+    --     json = {
+    --       validate = { enable = true },
+    --     },
+    --   }
+  end
+
+  lspconfig[lsp].setup(config)
 end
