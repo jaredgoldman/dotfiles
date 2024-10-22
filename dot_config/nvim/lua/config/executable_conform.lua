@@ -8,6 +8,7 @@ require("conform").setup({
     json = { "prettierd", "prettier" },
     jsonc = { "prettierd", "prettier" },
     markdown = { "marksman", "prettier", "prettierd" },
+    python = { "black", "autopep8" }, -- Added Python support
   },
   stop_after_first = {
     lua = true,
@@ -18,6 +19,7 @@ require("conform").setup({
     json = true,
     jsonc = true,
     markdown = true,
+    python = true, -- Added stop condition for Python
   },
 })
 

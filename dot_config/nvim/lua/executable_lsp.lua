@@ -33,7 +33,8 @@ local servers = {
   "ts_ls",
   "lua_ls",
   "eslint",
-  "jsonls"
+  "jsonls",
+  "pyright"
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -69,19 +70,17 @@ for _, lsp in ipairs(servers) do
         diagnostics = { globals = { "vim" } },
       },
     }
-    -- elseif lsp == "jsonls" then
-    --   config.settings = {
-    --     commands = {
-    --       Format = {
-    --         function()
-    --           vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
-    --         end
-    --       }
-    --     },
-    --     json = {
-    --       validate = { enable = true },
-    --     },
-    --   }
+  elseif lsp == "pyright" then
+    config.settings = {
+      python = {
+        analysis = {
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+          diagnosticMode = "workspace",
+        },
+        venvPath = vim.fn.expand("~/.cache/pypoetry/virtualenvs"),
+      },
+    }
   end
 
   lspconfig[lsp].setup(config)
