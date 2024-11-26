@@ -37,6 +37,7 @@ alias pyenv="source env/bin/activate"
 
 # Networking
 alias whichwanip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias showwifi="nmcli device wifi show-password"
 
 # Brightness
 ## Function to get the display name dynamically
@@ -85,7 +86,7 @@ function delete_old_branches() {
 }
 
 ## Function to perform an interactive rebase
-irebase() {
+function irebase() {
     if [ -z "$1" ]; then
         echo "Error: No branch name provided."
         echo "Usage: irebase <branch-name>"
@@ -97,8 +98,13 @@ irebase() {
 }
 
 ## Function to cherry-pick a commit
-gcp() {
+function gcp() {
   git cherry-pick "$1"
+}
+
+# Add this to your ~/.bashrc
+function git-time() {
+    git show -s --format=%ci "$1" 2>/dev/null || echo "Invalid commit hash or not in a git repo"
 }
 
 ## Function to generate an SSH key pair
