@@ -30,3 +30,7 @@ dab1d96bbcc43226e859ebd0ca7315a13a76711c ff916cd6b2da7e7b4800dc5fb033ae1ecde3e41
 ff916cd6b2da7e7b4800dc5fb033ae1ecde3e41d ab1e59c6a2f62bb8b5943a1d02f51ea9202f5a00 jaredgoldman <jaredgoldmandev@gmail.com> 1724370711 -0400	commit: fix: remove .github leftovers
 ab1e59c6a2f62bb8b5943a1d02f51ea9202f5a00 5752abdbfbcf3cd915f8df993abf8315a91739f5 jaredgoldman <jaredgoldmandev@gmail.com> 1724370773 -0400	commit: feat: update README.md
 5752abdbfbcf3cd915f8df993abf8315a91739f5 30fb40734e908e60b6cd69d91ac5b3abe85cdf0e jaredgoldman <jaredgoldmandev@gmail.com> 1724370833 -0400	commit: feat: remove requirements.md
+30fb40734e908e60b6cd69d91ac5b3abe85cdf0e 265da8892cf017bbd759bccd9557a0c31dc0b0c0 jaredgoldman <jaredgoldmandev@gmail.com> 1732663522 -0500	commit: feat: add supermaven
+265da8892cf017bbd759bccd9557a0c31dc0b0c0 798efd376087ab3022d9a555fda6f09b03c92309 jaredgoldman <jaredgoldmandev@gmail.com> 1732663534 -0500	pull --rebase (start): checkout 798efd376087ab3022d9a555fda6f09b03c92309
+798efd376087ab3022d9a555fda6f09b03c92309 265da8892cf017bbd759bccd9557a0c31dc0b0c0 jaredgoldman <jaredgoldmandev@gmail.com> 1732663541 -0500	rebase (abort): returning to refs/heads/main
+265da8892cf017bbd759bccd9557a0c31dc0b0c0 88318e15973e7c2948211b6d81e6758ba3409532 jaredgoldman <jaredgoldmandev@gmail.com> 1732667081 -0500	commit: feat: optimize nvim-cmp and supermaven
