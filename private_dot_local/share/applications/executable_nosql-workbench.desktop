@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=NoSQL Workbench
+Exec=nosql-workbench --force-device-scale-factor=1.2
+Type=Application
+Categories=Development;
