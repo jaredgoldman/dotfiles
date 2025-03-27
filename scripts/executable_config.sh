@@ -70,13 +70,13 @@ done < "$PKGLIST"
 # Run the pacman installation as root
 if [ -s "$PKGLIST_PACMAN" ]; then
   echo "Installing packages from $PKGLIST_PACMAN using pacman..."
-  sudo pacman -S --needed - < "$PKGLIST_PACMAN" || echo "Some packages were not found in pacman, they might need to be installed with yay."
+  sudo pacman -S --needed --noconfirm - < "$PKGLIST_PACMAN" || echo "Some packages were not found in pacman, they might need to be installed with yay."
 fi
 
 # Install packages from pkglist_yay.txt using yay as non-root
 if [ -s "$PKGLIST_YAY" ]; then
   echo "Installing packages from $PKGLIST_YAY using yay..."
-  xargs -a "$PKGLIST_YAY" yay -S --needed || error_exit "Failed to install some packages using yay from $PKGLIST_YAY"
+  xargs -a "$PKGLIST_YAY" yay -S --needed --noconfirm || error_exit "Failed to install some packages using yay from $PKGLIST_YAY"
 fi
 
 # Update the package list after installations
