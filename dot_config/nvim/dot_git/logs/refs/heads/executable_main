@@ -24,3 +24,5 @@ ab1e59c6a2f62bb8b5943a1d02f51ea9202f5a00 5752abdbfbcf3cd915f8df993abf8315a91739f
 88318e15973e7c2948211b6d81e6758ba3409532 14128fd13e8f1d101e0d25e0bb0d8c0bb69f24a3 jaredgoldman <jaredgoldmandev@gmail.com> 1732831768 -0500	commit: feat: further optmize nvim-cmp + supermaven
 14128fd13e8f1d101e0d25e0bb0d8c0bb69f24a3 e696a8cf20ba89d2dc77851a7260f65dd2610696 jaredgoldman <jaredgoldmandev@gmail.com> 1746056971 -0400	commit: fix: add php formatter to mason
 e696a8cf20ba89d2dc77851a7260f65dd2610696 b604b5eca7a2fb70836855224d3f9f18785af932 jaredgoldman <jaredgoldmandev@gmail.com> 1746056979 -0400	pull --rebase (finish): refs/heads/main onto 59e8b62edebf89febefef37a6697846fe1eebe44
+b604b5eca7a2fb70836855224d3f9f18785af932 8195ca6e6c1bba659592ef857c540f93c0628e72 Jared Goldman <jaredgoldmandev@gmail.com> 1747321208 -0600	commit: feat: enable relative line number
+8195ca6e6c1bba659592ef857c540f93c0628e72 740b52605ab1222e3b233495ef8821b00ea17b39 Jared Goldman <jaredgoldmandev@gmail.com> 1747586770 -0600	commit: feat: add html formatting
