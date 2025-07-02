@@ -1,0 +1,16 @@
+# Package List Export
+# Generated on: Wed Jul  2 06:14:55 PM EDT 2025
+# System: Linux archlinux 6.15.4-arch2-1 #1 SMP PREEMPT_DYNAMIC Fri, 27 Jun 2025 16:35:07 +0000 x86_64 GNU/Linux
+
+## Pacman Packages (Explicitly Installed)
+Total: 151
+
+## AUR Packages
+Total: 29
+
+## Files Generated
+- pacman-explicit_20250702_181454.txt (for restoration with: pacman -S --needed - < file)
+- pacman-all_20250702_181454.txt (complete package list)
+- pacman-explicit-detailed_20250702_181454.txt (with versions)
+- aur-packages_20250702_181454.txt (for restoration with: yay -S --needed - < file)
+- aur-packages-detailed_20250702_181454.txt (with versions)

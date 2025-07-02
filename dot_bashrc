@@ -31,6 +31,7 @@ export FONT="pango:Fira Code $FONT_SIZE"
 # -- Aliases -- #
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias gotosleep=`xset dpms force off`
 
 # Virtual python env
 alias pyenv="source env/bin/activate"
@@ -47,12 +48,13 @@ get_display_name() {
 
 ## Function to set the brightness
 brightness() {
-  local display_name=$(get_display_name)
-  if [ -n "$display_name" ]; then
-    xrandr --output "$display_name" --brightness "$1"
-  else
-    echo "No display found."
-  fi
+  # local display_name=$(get_display_name)
+  # if [ -n "$display_name" ]; then
+    # xrandr --output "$display_name" --brightness "$1"
+    xrandr --output "eDP1" --brightness "$1"
+  # else
+    # echo "No display found."
+  # fi
 }
 
 # Usage example:
@@ -332,3 +334,4 @@ esac
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="$HOME/pnpm-global/bin:$PATH"
