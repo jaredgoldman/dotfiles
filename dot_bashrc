@@ -31,7 +31,7 @@ export FONT="pango:Fira Code $FONT_SIZE"
 # -- Aliases -- #
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias gotosleep=`xset dpms force off`
+alias gotosleep='xset dpms force off'
 
 # Virtual python env
 alias pyenv="source env/bin/activate"
