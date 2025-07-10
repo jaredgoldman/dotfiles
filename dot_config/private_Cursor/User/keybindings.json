@@ -343,5 +343,15 @@
     "key": "space shift+s",
     "command": "workbench.action.files.saveAll",
     "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "aichat.newchataction",
+    "when": "!aichat.chatFocused && !terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "aichat.chatFocused"
   }
 ]
