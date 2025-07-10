@@ -1,0 +1,347 @@
+[
+  {
+    "key": "ctrl+i",
+    "command": "composerMode.agent"
+  },
+  {
+    "key": "space n h",
+    "command": "editor.action.clearSearchResults",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.focusLeftGroup"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.focusBelowGroup"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.focusAboveGroup"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.focusRightGroup"
+  },
+  {
+    "key": "space s v",
+    "command": "workbench.action.splitEditorDown",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space s h",
+    "command": "workbench.action.splitEditorRight",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space s e",
+    "command": "workbench.action.evenEditorWidths",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space s x",
+    "command": "workbench.action.closeActiveEditor",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space e",
+    "command": "workbench.view.explorer",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space c f",
+    "command": "workbench.files.action.collapseExplorerFolders",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space l s",
+    "command": "typescript.restartTsServer",
+    "when": "editorTextFocus && (editorLangId == typescript || editorLangId == javascript)"
+  },
+  {
+    "key": "space l s",
+    "command": "python.restartLanguageServer",
+    "when": "editorTextFocus && editorLangId == python"
+  },
+  {
+    "key": "space l o",
+    "command": "workbench.action.reloadWindow",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space f f",
+    "command": "workbench.action.quickOpen",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space f w",
+    "command": "workbench.action.findInFiles",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space f c",
+    "command": "workbench.action.findInFiles",
+    "when": "!terminalFocus",
+    "args": {
+      "query": "",
+      "triggerSearch": false,
+      "focusResults": false,
+      "isRegex": false,
+      "isCaseSensitive": false,
+      "matchWholeWord": false
+    }
+  },
+  {
+    "key": "space t h",
+    "command": "workbench.action.selectTheme",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space t n",
+    "command": "workbench.action.files.newUntitledFile",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space t x",
+    "command": "workbench.action.closeActiveEditor",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space t j",
+    "command": "workbench.action.nextEditor",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space t k",
+    "command": "workbench.action.previousEditor",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space t o",
+    "command": "workbench.action.closeOtherEditors",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space s m",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space h",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space f m",
+    "command": "editor.action.formatDocument",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "f1",
+    "command": "-workbench.action.showCommands"
+  },
+  {
+    "key": "space w",
+    "command": "editor.action.toggleWordWrap",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space f r",
+    "command": "editor.action.startFindReplaceAction",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "alt+j",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+k",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+l",
+    "command": "extension.vim_escape",
+    "when": "editorTextFocus && vim.active && !inDebugRepl"
+  },
+  {
+    "key": "alt+l",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "alt+l",
+    "command": "closeFindWidget",
+    "when": "editorFocus && findWidgetVisible && !vim.active"
+  },
+  {
+    "key": "space k",
+    "command": "editor.action.showHover",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "[ d",
+    "command": "editor.action.marker.prevInFiles"
+  },
+  {
+    "key": "] d",
+    "command": "editor.action.marker.nextInFiles"
+  },
+  {
+    "key": "space q",
+    "command": "workbench.actions.view.problems",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space",
+    "command": "editor.action.revealDeclaration",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "shift+k",
+    "command": "editor.action.showHover"
+  },
+  {
+    "key": "space shift+d",
+    "command": "editor.action.goToTypeDefinition",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space r n",
+    "command": "editor.action.rename",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space c a",
+    "command": "editor.action.quickFix",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "f5",
+    "command": "workbench.action.debug.continue"
+  },
+  {
+    "key": "f10",
+    "command": "workbench.action.debug.stepOver"
+  },
+  {
+    "key": "f11",
+    "command": "workbench.action.debug.stepInto"
+  },
+  {
+    "key": "f12",
+    "command": "workbench.action.debug.stepOut"
+  },
+  {
+    "key": "space b",
+    "command": "editor.debug.action.toggleBreakpoint",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space shift+b",
+    "command": "editor.debug.action.conditionalBreakpoint",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space u i",
+    "command": "workbench.debug.action.toggleRepl",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space space",
+    "command": "workbench.action.showCommands",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space p",
+    "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space 1",
+    "command": "workbench.action.openEditorAtIndex1",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space 2",
+    "command": "workbench.action.openEditorAtIndex2",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space 3",
+    "command": "workbench.action.openEditorAtIndex3",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space 4",
+    "command": "workbench.action.openEditorAtIndex4",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space 5",
+    "command": "workbench.action.openEditorAtIndex5",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space g s",
+    "command": "workbench.view.scm",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space g c",
+    "command": "git.commitAll",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space g p",
+    "command": "git.push",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space g l",
+    "command": "git.pullRebase",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "space a",
+    "command": "bookmarks.toggle",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "bookmarks.list"
+  },
+  {
+    "key": "space c",
+    "command": "bookmarks.clear",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space o",
+    "command": "workbench.action.files.openFile",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space n",
+    "command": "workbench.action.files.newUntitledFile",
+    "when": "!terminalFocus"
+  },
+
+  {
+    "key": "space w s",
+    "command": "workbench.action.files.save",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "space shift+s",
+    "command": "workbench.action.files.saveAll",
+    "when": "!terminalFocus"
+  }
+]
