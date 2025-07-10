@@ -1,0 +1,14 @@
+{
+    "window.commandCenter": 1,
+    "makefile.configureOnOpen": true,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "editor.formatOnSave": true,
+    "cursor.composer.shouldAllowCustomModes": true,
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.formatOnPaste": true,
+    "notebook.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "workbench.colorTheme": "Default Dark Modern",
+    "cursor.composer.textSizeScale": 1.15,
+    "cursor.composer.shouldChimeAfterChatFinishes": true
+}
