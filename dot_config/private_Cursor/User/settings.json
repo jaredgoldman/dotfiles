@@ -10,5 +10,78 @@
     "notebook.defaultFormatter": "rvest.vs-code-prettier-eslint",
     "workbench.colorTheme": "Default Dark Modern",
     "cursor.composer.textSizeScale": 1.15,
-    "cursor.composer.shouldChimeAfterChatFinishes": true
+    "cursor.composer.shouldChimeAfterChatFinishes": true,
+    "editor.formatOnType": true,
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<leader>", "f", "f"],
+            "commands": ["workbench.action.quickOpen"]
+        },
+        {
+            "before": ["<leader>", "f", "w"],
+            "commands": ["workbench.action.findInFiles"]
+        },
+        {
+            "before": ["<leader>", "f", "m"],
+            "commands": ["editor.action.formatDocument"]
+        },
+        {
+            "before": ["<leader>", "g", "d"],
+            "commands": ["editor.action.revealDefinition"]
+        },
+        {
+            "before": ["<leader>", "g", "r"],
+            "commands": ["editor.action.goToReferences"]
+        },
+        {
+            "before": ["<leader>", "r", "n"],
+            "commands": ["editor.action.rename"]
+        },
+        {
+            "before": ["<leader>", "c", "a"],
+            "commands": ["editor.action.quickFix"]
+        },
+        {
+            "before": ["<leader>", "<leader>"],
+            "commands": ["workbench.action.showCommands"]
+        },
+        {
+            "before": ["<leader>", "e"],
+            "commands": ["workbench.view.explorer"]
+        },
+        {
+            "before": ["<leader>", "h"],
+            "commands": ["workbench.action.terminal.toggleTerminal"]
+        },
+        {
+            "before": ["<leader>", "q"],
+            "commands": ["workbench.actions.view.problems"]
+        },
+        {
+            "before": ["<leader>", "w", "s"],
+            "commands": ["workbench.action.files.save"]
+        },
+        {
+            "before": ["<leader>", "r", "r"],
+            "commands": ["workbench.action.reloadWindow"]
+        },
+        {
+            "before": ["<leader>", "s", "v"],
+            "commands": ["workbench.action.splitEditorDown"]
+        },
+        {
+            "before": ["<leader>", "s", "h"],
+            "commands": ["workbench.action.splitEditorRight"]
+        },
+        {
+            "before": ["<leader>", "s", "e"],
+            "commands": ["workbench.action.evenEditorWidths"]
+        },
+        {
+            "before": ["<leader>", "s", "x"],
+            "commands": ["workbench.action.closeActiveEditor"]
+        }
+    ],
+    "files.autoSaveWhenNoErrors": true
 }
