@@ -57,12 +57,12 @@
   {
     "key": "space l s",
     "command": "typescript.restartTsServer",
-    "when": "editorTextFocus && (editorLangId == typescript || editorLangId == javascript)"
+    "when": "editorTextFocus && (editorLangId == typescript || editorLangId == javascript) && vim.mode != 'Insert'"
   },
   {
     "key": "space l s",
     "command": "python.restartLanguageServer",
-    "when": "editorTextFocus && editorLangId == python"
+    "when": "editorTextFocus && editorLangId == python && vim.mode != 'Insert'"
   },
   {
     "key": "space l o",
