@@ -219,6 +219,16 @@
     "when": "!terminalFocus && vim.mode != 'Insert'"
   },
   {
+    "key": "space g d",
+    "command": "editor.action.revealDefinition",
+    "when": "!terminalFocus && vim.mode != 'Insert'"
+  },
+  {
+    "key": "space g r",
+    "command": "editor.action.goToReferences",
+    "when": "!terminalFocus && vim.mode != 'Insert'"
+  },
+  {
     "key": "f5",
     "command": "workbench.action.debug.continue"
   },
