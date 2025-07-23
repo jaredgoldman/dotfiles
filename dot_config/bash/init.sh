@@ -17,8 +17,9 @@ source "$BASH_CONFIG_DIR/functions/translations.sh"
 source "$BASH_CONFIG_DIR/functions/git.sh"
 source "$BASH_CONFIG_DIR/functions/ssh.sh"
 source "$BASH_CONFIG_DIR/functions/images.sh"
-source "$BASH_CONFIG_DIR/functions/osf.sh"
+source "$BASH_CONFIG_DIR/functions/fs.sh"
 source "$BASH_CONFIG_DIR/functions/packages.sh"
+source "$BASH_CONFIG_DIR/functions/aws.sh"
 
 # Source security configuration
 source "$BASH_CONFIG_DIR/security/keychain.sh"

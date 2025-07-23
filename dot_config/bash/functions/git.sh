@@ -26,12 +26,8 @@ function irebase() {
   git rebase -i $(git merge-base "$branch_name" HEAD)
 }
 
-## Function to cherry-pick a commit
-function gcp() {
-  git cherry-pick "$1"
-}
-
 # Function to show commit timestamp
 function git-time() {
   git show -s --format=%ci "$1" 2>/dev/null || echo "Invalid commit hash or not in a git repo"
-} 
+}
+
