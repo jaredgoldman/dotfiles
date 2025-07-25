@@ -33,4 +33,4 @@ if [[ $- == *i* ]]; then
     PS1='[\u@\h \W]\$ '
     # Initialize starship prompt
     eval "$(starship init bash)"
-fi 
+fi

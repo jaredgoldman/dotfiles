@@ -32,5 +32,5 @@ function interactive_logs() {
 
   # Execute the command
   echo "Executing: pnpm logs:tail --aws-profile $aws_profile --osf-env $osf_env --osf-endpoint $osf_endpoint $path"
-  pnpm logs:tail --aws-profile "$aws_profile" --osf-env "$osf_env" --osf-endpoint "$osf_endpoint" "$path"
+  pnpm logs:tail:bash --aws-profile "$aws_profile" --osf-env "$osf_env" --osf-endpoint "$osf_endpoint" "$path"
 }
