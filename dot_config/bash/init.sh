@@ -20,6 +20,7 @@ source "$BASH_CONFIG_DIR/functions/images.sh"
 source "$BASH_CONFIG_DIR/functions/fs.sh"
 source "$BASH_CONFIG_DIR/functions/packages.sh"
 source "$BASH_CONFIG_DIR/functions/aws.sh"
+source "$BASH_CONFIG_DIR/functions/wireguard.sh"
 
 # Source security configuration
 source "$BASH_CONFIG_DIR/security/keychain.sh"
