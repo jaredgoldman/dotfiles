@@ -1,0 +1,50 @@
+# Comprehensive Package List Export
+# Generated on: Sun Jul 27 02:57:37 PM EDT 2025
+# System: Linux archlinux 6.15.7-arch1-1 #1 SMP PREEMPT_DYNAMIC Thu, 17 Jul 2025 21:05:29 +0000 x86_64 GNU/Linux
+
+## Pacman Packages (Explicitly Installed)
+Total: 170
+File: pacman-explicit_20250727_145736.txt
+Restore with: sudo pacman -S --needed - < pacman-explicit_20250727_145736.txt
+
+## AUR Packages
+Total: 32
+File: aur-packages_20250727_145736.txt
+Restore with: yay -S --needed - < aur-packages_20250727_145736.txt
+
+## Snap Packages
+Total: 6
+File: snap-packages_20250727_145736.txt
+Restore with: while read pkg; do sudo snap install $pkg; done < snap-packages_20250727_145736.txt
+
+## Manual Installations (/opt)
+Total: 10
+File: opt-installations_20250727_145736.txt
+Note: These require manual installation/copying
+
+## User Systemd Services
+Total: 8
+File: user-systemd-services_20250727_145736.txt
+Note: May require manual enabling after package installation
+
+## Custom System Services
+File: system-services_20250727_145736.txt
+Note: Review and manually enable as needed
+
+## All Dependencies (pacman-all)
+Total: 1209
+File: pacman-all_20250727_145736.txt
+Note: Use only if explicit installation doesn't restore everything
+
+## Files Generated
+Core package files:
+- pacman-explicit_20250727_145736.txt (primary restore file)
+- aur-packages_20250727_145736.txt (AUR packages)
+- snap-packages_20250727_145736.txt (Snap packages)
+
+Additional files:
+- pacman-all_20250727_145736.txt (all packages including dependencies)
+- *-detailed_20250727_145736.txt (versions and detailed info)
+- opt-installations_20250727_145736.txt (manual installations)
+- user-systemd-services_20250727_145736.txt (user services)
+- system-services_20250727_145736.txt (system services)

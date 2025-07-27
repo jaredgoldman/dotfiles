@@ -1,0 +1,6 @@
+bare
+core18
+dynobase
+gnome-3-28-1804
+gtk-common-themes
+snapd

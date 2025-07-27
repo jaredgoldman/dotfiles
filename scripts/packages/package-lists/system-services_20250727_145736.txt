@@ -1,0 +1,6 @@
+awsvpnclient.service                                  enabled disabled
+docker.service                                        enabled disabled
+iptables.service                                      enabled disabled
+snapd.apparmor.service                                enabled disabled
+sshd.service                                          enabled disabled
+fstrim.timer                                          enabled disabled
