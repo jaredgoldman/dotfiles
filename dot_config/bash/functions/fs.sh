@@ -53,7 +53,7 @@ _rsync_completion() {
 
       # Get remote directory listing via SSH
       local remote_files
-      remote_files=$(ssh "$ssh_host" "ls -1d ${remote_dir}*/ ${remote_dir}* 2>/dev/null | sed 's|^|${remote_dir%/}/|' | sed 's|//|/|g'" 2>/dev/null)
+      remote_files=$(ssh "$ssh_host" "ls -1d \"${remote_dir}\"*/ \"${remote_dir}\"* 2>/dev/null" 2>/dev/null | sed "s|^|${remote_dir%/}/|" | sed 's|//|/|g')
 
       if [[ $? -eq 0 && -n "$remote_files" ]]; then
         COMPREPLY=($(compgen -W "$remote_files" -- "$cur"))
@@ -64,10 +64,15 @@ _rsync_completion() {
     else
       # For paths without / or when SSH fails, try to get home directory listing
       local remote_files
-      remote_files=$(ssh "$ssh_host" "ls -1d */ * 2>/dev/null" 2>/dev/null | sed 's|^|~/|')
+      remote_files=$(ssh "$ssh_host" "ls -1d */ * 2>/dev/null" 2>/dev/null)
 
       if [[ $? -eq 0 && -n "$remote_files" ]]; then
-        COMPREPLY=($(compgen -W "$remote_files" -- "$cur"))
+        # Add ~/ prefix to each file/directory
+        local prefixed_files=""
+        while IFS= read -r line; do
+          [[ -n "$line" ]] && prefixed_files="$prefixed_files ~/$line"
+        done <<< "$remote_files"
+        COMPREPLY=($(compgen -W "$prefixed_files" -- "$cur"))
       else
         # Ultimate fallback
         COMPREPLY=($(compgen -f -- "$cur"))
@@ -78,12 +83,12 @@ _rsync_completion() {
 }
 
 # Register completion function
-complete -F _rsync_completion "$(basename "$0")"
+complete -F _rsync_completion transfer_files
 
 # Main script function
 transfer_files() {
   if [[ $# -lt 2 ]]; then
-    echo "Usage: transfer_files <local_file_path> <ssh_host> [remote_path]"
+    echo "Usage: transfer_files <local_file_path>... <ssh_host> [remote_path]"
     echo ""
     echo "Available SSH hosts:"
     get_ssh_hosts | sed 's/^/  /'
@@ -92,18 +97,47 @@ transfer_files() {
     echo "  transfer_files /path/to/file.txt myserver"
     echo "  transfer_files /path/to/file.txt myserver /remote/path/"
     echo "  transfer_files /path/to/directory/ myserver /remote/destination/"
+    echo "  transfer_files ~/Videos/* myserver /remote/videos/"
+    echo "  transfer_files file1.txt file2.txt myserver"
     return 1
   fi
 
-  local_path="$1"
-  ssh_host="$2"
-  remote_path="${3:-~}" # Default to home directory if not specified
-
-  # Check if local file/directory exists
-  if [[ ! -e "$local_path" ]]; then
-    echo "Error: Local path '$local_path' does not exist"
-    return 1
+  # Parse arguments: all but last 1-2 are local paths
+  local args=("$@")
+  local num_args=$#
+  
+  # Determine if last argument is remote path or ssh host
+  local ssh_host
+  local remote_path="~"  # Default to home directory
+  local local_paths=()
+  
+  if [[ $num_args -eq 2 ]]; then
+    # Only 2 args: local_path ssh_host
+    local_paths=("${args[0]}")
+    ssh_host="${args[1]}"
+  else
+    # 3+ args: local_path(s)... ssh_host [remote_path]
+    # Check if last arg looks like a path (contains / or starts with ~)
+    local last_arg="${args[$((num_args-1))]}"
+    if [[ "$last_arg" == */* ]] || [[ "$last_arg" == ~* ]]; then
+      # Last arg is remote path
+      ssh_host="${args[$((num_args-2))]}"
+      remote_path="$last_arg"
+      local_paths=("${args[@]:0:$((num_args-2))}")
+    else
+      # Last arg is ssh host
+      ssh_host="$last_arg"
+      local_paths=("${args[@]:0:$((num_args-1))}")
+    fi
   fi
+
+  # Validate local paths
+  for local_path in "${local_paths[@]}"; do
+    if [[ ! -e "$local_path" ]]; then
+      echo "Error: Local path '$local_path' does not exist"
+      return 1
+    fi
+  done
 
   # Check if SSH host is in config
   if ! get_ssh_hosts | grep -q "^$ssh_host$"; then
@@ -113,17 +147,24 @@ transfer_files() {
   # Build rsync command
   rsync_cmd="rsync -avz --progress"
 
-  # Add trailing slash for directories if needed
-  if [[ -d "$local_path" && "$local_path" != */ ]]; then
-    local_path="$local_path/"
-  fi
+  # Prepare local paths for rsync
+  local rsync_sources=()
+  for local_path in "${local_paths[@]}"; do
+    # Add trailing slash for directories if needed
+    if [[ -d "$local_path" && "$local_path" != */ ]]; then
+      rsync_sources+=("$local_path/")
+    else
+      rsync_sources+=("$local_path")
+    fi
+  done
 
   # Execute rsync
-  echo "Syncing '$local_path' to '$ssh_host:$remote_path'"
-  echo "Running: $rsync_cmd \"$local_path\" \"$ssh_host:$remote_path\""
+  echo "Syncing ${#local_paths[@]} item(s) to '$ssh_host:$remote_path'"
+  echo "Sources: ${rsync_sources[*]}"
+  echo "Running: $rsync_cmd ${rsync_sources[*]} \"$ssh_host:$remote_path\""
   echo ""
 
-  $rsync_cmd "$local_path" "$ssh_host:$remote_path"
+  $rsync_cmd "${rsync_sources[@]}" "$ssh_host:$remote_path"
 
   if [[ $? -eq 0 ]]; then
     echo ""
