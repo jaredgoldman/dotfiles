@@ -4,13 +4,17 @@
 # Function to check and start ssh-agent if needed
 function ensure_ssh_agent() {
   # Check if ssh-agent is running by testing if we can list keys
-  if ! ssh-add -l &>/dev/null; then
+  ssh-add -l &>/dev/null
+  local exit_code=$?
+  
+  if [[ $exit_code -eq 2 ]]; then
     # ssh-agent not running or not accessible, start it
     echo "Starting ssh-agent..."
     eval "$(ssh-agent -s)"
 
     # Verify it started successfully
-    if ! ssh-add -l &>/dev/null; then
+    ssh-add -l &>/dev/null
+    if [[ $? -eq 2 ]]; then
       echo "Error: Failed to start ssh-agent"
       return 1
     fi
