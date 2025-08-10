@@ -17,6 +17,7 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"pyright",
 		"intelephense",
+		"svelte", -- Svelte LSP
 		-- New additions
 		"html", -- HTML LSP
 		"bashls", -- Bash LSP

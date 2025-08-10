@@ -67,7 +67,7 @@ local mappings = {
 		["<F1>"] = "<nop>",
 	},
 	t = {
-		["C-h"] = "<C-\\><C-n>:FTermClose<CR>",
+		["<C-h>"] = "<C-\\><C-n>:FTermClose<CR>",
 	},
 	v = {
 		["<leader>as"] = "<cmd>ClaudeCodeTreeAdd<cr>",

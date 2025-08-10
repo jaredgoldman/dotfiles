@@ -1,12 +1,25 @@
 require("nvim-treesitter.configs").setup({
+	ensure_installed = {
+		"svelte",
+		"javascript",
+		"typescript",
+		"tsx",
+		"html",
+		"css",
+		"json",
+		"lua",
+		"python",
+	},
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
+	indent = {
+		enable = true,
+	},
 	autotag = {
 		enable = true,
 	},
-	opts = function(_, opts)
-		if type(opts.ensure_installed) == "table" then
-			vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
-		end
-	end,
 })
 
 -- Enable update on insert

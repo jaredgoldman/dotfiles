@@ -35,6 +35,7 @@ local servers = {
 	"eslint",
 	"jsonls",
 	"pyright",
+	"svelte",
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
