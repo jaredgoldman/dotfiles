@@ -1,0 +1,13 @@
+total 60
+drwxr-xr-x 12 root root  4096 Aug 11 22:54 .
+drwxr-xr-x 18 root root  4096 Aug  6 11:32 ..
+drwxr-xr-x 14 root root 16384 Aug 12 11:58 awsvpnclient
+drwx--x--x  4 root root  4096 Aug 11 22:54 containerd
+drwxr-xr-x  2 root root  4096 Aug  6 11:32 cursor-bin
+drwxr-xr-x  8 root root  4096 Aug  6 11:32 datagrip
+drwxr-xr-x  3 root root  4096 Aug  6 11:32 google
+drwxr-xr-x  4 root root  4096 Aug  6 11:32 keybase
+drwxr-xr-x  2 root root  4096 Aug  6 11:32 nosql-workbench
+drwxr-xr-x  3 root root  4096 Aug  6 11:32 postman
+drwxr-xr-x  3 root root  4096 Aug  6 11:32 Synology
+drwxr-xr-x 14 root root  4096 Aug  6 11:32 zoom

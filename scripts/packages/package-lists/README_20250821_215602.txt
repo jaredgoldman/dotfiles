@@ -1,0 +1,44 @@
+# Comprehensive Package List Export
+# Generated on: Thu Aug 21 09:56:03 PM EDT 2025
+# System: Linux lappy 6.16.0-arch2-1 #1 SMP PREEMPT_DYNAMIC Wed, 13 Aug 2025 23:38:48 +0000 x86_64 GNU/Linux
+
+## Pacman Packages (Explicitly Installed)
+Total: 165
+File: pacman-explicit_20250821_215602.txt
+Restore with: sudo pacman -S --needed - < pacman-explicit_20250821_215602.txt
+
+## AUR Packages
+Total: 31
+File: aur-packages_20250821_215602.txt
+Restore with: yay -S --needed - < aur-packages_20250821_215602.txt
+
+## Manual Installations (/opt)
+Total: 10
+File: opt-installations_20250821_215602.txt
+Note: These require manual installation/copying
+
+## User Systemd Services
+Total: 4
+File: user-systemd-services_20250821_215602.txt
+Note: May require manual enabling after package installation
+
+## Custom System Services
+File: system-services_20250821_215602.txt
+Note: Review and manually enable as needed
+
+## All Dependencies (pacman-all)
+Total: 701
+File: pacman-all_20250821_215602.txt
+Note: Use only if explicit installation doesn't restore everything
+
+## Files Generated
+Core package files:
+- pacman-explicit_20250821_215602.txt (primary restore file)
+- aur-packages_20250821_215602.txt (AUR packages)
+
+Additional files:
+- pacman-all_20250821_215602.txt (all packages including dependencies)
+- *-detailed_20250821_215602.txt (versions and detailed info)
+- opt-installations_20250821_215602.txt (manual installations)
+- user-systemd-services_20250821_215602.txt (user services)
+- system-services_20250821_215602.txt (system services)

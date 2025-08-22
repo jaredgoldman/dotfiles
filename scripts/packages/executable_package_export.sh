@@ -41,34 +41,19 @@ if command_exists yay; then
     echo
     echo "Exporting AUR packages..."
 
-    # AUR packages only
-    yay -Qqm > "$OUTPUT_DIR/aur-packages_$TIMESTAMP.txt"
+    # AUR packages only (redirect stderr to avoid warning messages)
+    yay -Qqm 2>/dev/null > "$OUTPUT_DIR/aur-packages_$TIMESTAMP.txt"
     echo "✓ AUR packages: $OUTPUT_DIR/aur-packages_$TIMESTAMP.txt"
 
-    # AUR packages with versions
-    yay -Qm > "$OUTPUT_DIR/aur-packages-detailed_$TIMESTAMP.txt"
+    # AUR packages with versions (redirect stderr to avoid warning messages)
+    yay -Qm 2>/dev/null > "$OUTPUT_DIR/aur-packages-detailed_$TIMESTAMP.txt"
     echo "✓ AUR packages (detailed): $OUTPUT_DIR/aur-packages-detailed_$TIMESTAMP.txt"
 else
     echo
     echo "⚠ yay not found - skipping AUR package export"
 fi
 
-# Export Snap packages
-echo
-echo "Checking for Snap packages..."
-if command_exists snap; then
-    snap list 2>/dev/null | tail -n +2 | awk '{print $1}' > "$OUTPUT_DIR/snap-packages_$TIMESTAMP.txt"
-    if [[ -s "$OUTPUT_DIR/snap-packages_$TIMESTAMP.txt" ]]; then
-        echo "✓ Snap packages: $OUTPUT_DIR/snap-packages_$TIMESTAMP.txt"
-        snap list > "$OUTPUT_DIR/snap-packages-detailed_$TIMESTAMP.txt"
-        echo "✓ Snap packages (detailed): $OUTPUT_DIR/snap-packages-detailed_$TIMESTAMP.txt"
-    else
-        echo "⚠ No snap packages found"
-        rm "$OUTPUT_DIR/snap-packages_$TIMESTAMP.txt"
-    fi
-else
-    echo "⚠ snap not found - skipping snap package export"
-fi
+# Snap packages skipped (removed per user request)
 
 # Export Flatpak packages
 echo
@@ -144,13 +129,6 @@ echo "Creating comprehensive summary..."
         echo "Restore with: yay -S --needed - < aur-packages_$TIMESTAMP.txt"
         echo
     fi
-    if [[ -f "$OUTPUT_DIR/snap-packages_$TIMESTAMP.txt" ]]; then
-        echo "## Snap Packages"
-        echo "Total: $(wc -l < "$OUTPUT_DIR/snap-packages_$TIMESTAMP.txt")"
-        echo "File: snap-packages_$TIMESTAMP.txt"
-        echo "Restore with: while read pkg; do sudo snap install \$pkg; done < snap-packages_$TIMESTAMP.txt"
-        echo
-    fi
     if [[ -f "$OUTPUT_DIR/flatpak-packages_$TIMESTAMP.txt" ]]; then
         echo "## Flatpak Packages"
         echo "Total: $(wc -l < "$OUTPUT_DIR/flatpak-packages_$TIMESTAMP.txt")"
@@ -189,9 +167,6 @@ echo "Creating comprehensive summary..."
     if command_exists yay; then
         echo "- aur-packages_$TIMESTAMP.txt (AUR packages)"
     fi
-    if [[ -f "$OUTPUT_DIR/snap-packages_$TIMESTAMP.txt" ]]; then
-        echo "- snap-packages_$TIMESTAMP.txt (Snap packages)"
-    fi
     if [[ -f "$OUTPUT_DIR/flatpak-packages_$TIMESTAMP.txt" ]]; then
         echo "- flatpak-packages_$TIMESTAMP.txt (Flatpak packages)"
     fi
@@ -220,9 +195,6 @@ ln -sf "pacman-all_$TIMESTAMP.txt" "$OUTPUT_DIR/pacman-all-latest.txt"
 if command_exists yay; then
     ln -sf "aur-packages_$TIMESTAMP.txt" "$OUTPUT_DIR/aur-packages-latest.txt"
 fi
-if [[ -f "$OUTPUT_DIR/snap-packages_$TIMESTAMP.txt" ]]; then
-    ln -sf "snap-packages_$TIMESTAMP.txt" "$OUTPUT_DIR/snap-packages-latest.txt"
-fi
 if [[ -f "$OUTPUT_DIR/flatpak-packages_$TIMESTAMP.txt" ]]; then
     ln -sf "flatpak-packages_$TIMESTAMP.txt" "$OUTPUT_DIR/flatpak-packages-latest.txt"
 fi
@@ -246,9 +218,6 @@ echo "Pacman packages (explicit): $(wc -l < "$OUTPUT_DIR/pacman-explicit_$TIMEST
 echo "Pacman packages (total): $(wc -l < "$OUTPUT_DIR/pacman-all_$TIMESTAMP.txt")"
 if command_exists yay; then
     echo "AUR packages: $(wc -l < "$OUTPUT_DIR/aur-packages_$TIMESTAMP.txt")"
-fi
-if [[ -f "$OUTPUT_DIR/snap-packages_$TIMESTAMP.txt" ]]; then
-    echo "Snap packages: $(wc -l < "$OUTPUT_DIR/snap-packages_$TIMESTAMP.txt")"
 fi
 if [[ -f "$OUTPUT_DIR/flatpak-packages_$TIMESTAMP.txt" ]]; then
     echo "Flatpak packages: $(wc -l < "$OUTPUT_DIR/flatpak-packages_$TIMESTAMP.txt")"
