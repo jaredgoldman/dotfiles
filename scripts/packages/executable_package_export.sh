@@ -24,17 +24,27 @@ command_exists() {
 # Export pacman packages
 echo "Exporting pacman packages..."
 
-# Explicitly installed packages (recommended for restoration)
-pacman -Qqe > "$OUTPUT_DIR/pacman-explicit_$TIMESTAMP.txt"
-echo "✓ Explicitly installed packages: $OUTPUT_DIR/pacman-explicit_$TIMESTAMP.txt"
+# Explicitly installed packages (pacman only - excluding AUR packages)
+if command_exists yay; then
+    comm -23 <(pacman -Qqe | sort) <(yay -Qqm 2>/dev/null | sort) > "$OUTPUT_DIR/pacman-explicit_$TIMESTAMP.txt"
+else
+    # If yay is not available, export all explicitly installed packages
+    pacman -Qqe > "$OUTPUT_DIR/pacman-explicit_$TIMESTAMP.txt"
+fi
+echo "✓ Explicitly installed pacman packages: $OUTPUT_DIR/pacman-explicit_$TIMESTAMP.txt"
 
 # All installed packages
 pacman -Qq > "$OUTPUT_DIR/pacman-all_$TIMESTAMP.txt"
 echo "✓ All installed packages: $OUTPUT_DIR/pacman-all_$TIMESTAMP.txt"
 
-# Detailed package info with versions
-pacman -Qe > "$OUTPUT_DIR/pacman-explicit-detailed_$TIMESTAMP.txt"
-echo "✓ Detailed package list: $OUTPUT_DIR/pacman-explicit-detailed_$TIMESTAMP.txt"
+# Detailed package info with versions (pacman only - excluding AUR packages)
+if command_exists yay; then
+    comm -23 <(pacman -Qe | sort) <(yay -Qm 2>/dev/null | sort) > "$OUTPUT_DIR/pacman-explicit-detailed_$TIMESTAMP.txt"
+else
+    # If yay is not available, export all explicitly installed packages
+    pacman -Qe > "$OUTPUT_DIR/pacman-explicit-detailed_$TIMESTAMP.txt"
+fi
+echo "✓ Detailed pacman package list: $OUTPUT_DIR/pacman-explicit-detailed_$TIMESTAMP.txt"
 
 # Export AUR packages if yay is available
 if command_exists yay; then

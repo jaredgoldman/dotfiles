@@ -1,0 +1,4 @@
+p11-kit-server.socket enabled enabled
+pipewire.socket       enabled enabled
+pulseaudio.socket     enabled enabled
+3 unit files listed.

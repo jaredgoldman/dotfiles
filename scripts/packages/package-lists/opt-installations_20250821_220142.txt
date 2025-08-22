@@ -1,0 +1,10 @@
+awsvpnclient
+containerd
+cursor-bin
+datagrip
+google
+keybase
+nosql-workbench
+postman
+Synology
+zoom

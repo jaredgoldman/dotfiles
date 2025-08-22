@@ -54,8 +54,27 @@ install_yay() {
     TEMP_DIR=$(mktemp -d)
     cd "$TEMP_DIR"
 
-    # Clone and install yay
-    git clone https://aur.archlinux.org/yay.git
+    # Clone and install yay with retry logic
+    local attempts=0
+    local max_attempts=3
+    
+    while [[ $attempts -lt $max_attempts ]]; do
+        attempts=$((attempts + 1))
+        print_status "Attempt $attempts/$max_attempts: Cloning yay..."
+        
+        if git clone https://aur.archlinux.org/yay.git; then
+            break
+        elif [[ $attempts -eq $max_attempts ]]; then
+            print_error "Failed to clone yay after $max_attempts attempts"
+            cd "$SCRIPT_DIR"
+            rm -rf "$TEMP_DIR"
+            return 1
+        else
+            print_warning "Clone failed, retrying in 5 seconds..."
+            sleep 5
+        fi
+    done
+    
     cd yay
     makepkg -si --noconfirm
 

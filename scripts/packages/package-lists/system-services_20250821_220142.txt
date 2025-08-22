@@ -1,0 +1,3 @@
+awsvpnclient.service               enabled disabled
+docker.service                     enabled disabled
+fstrim.timer                       enabled disabled
