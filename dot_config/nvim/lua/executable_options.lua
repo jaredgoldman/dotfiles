@@ -66,7 +66,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 opt.clipboard = "unnamedplus" -- use system clipboard
 vim.keymap.set("v", "<leader>sy", function()
 	-- First yank to unnamed register
-	vim.cmd("y")
+	vim.cmd("'<,'>y")
 	local content = vim.fn.getreg('"')
 	-- Use OSC 52 to copy to system clipboard
 	require("vim.ui.clipboard.osc52").copy("+")({ content })
