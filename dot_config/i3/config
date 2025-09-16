@@ -41,9 +41,10 @@ assign [class="pavucontrol"] 6
 assign [class="Slack"] 4
 assign [class="firefox"] 3
 assign [class="obsidian"] 5
+assign [class="arandr"] 6
 
 # Startup stuff
-exec --no-startup-id arandr /home/jgarch/.screenlayout/mexico.sh
+exec --no-startup-id arandr
 exec --no-startup-id blueberry
 exec --no-startup-id dunst
 exec --no-startup-id alacritty
