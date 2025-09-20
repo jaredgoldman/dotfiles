@@ -1,10 +1,19 @@
-import = ["/home/jg/.config/alacritty/themes/themes/campbell.toml"]
 
 [font]
-size = 12
-normal = { family = "JetBrains Mono", style = "Regular" }
-bold = { family = "JetBrains Mono", style = "Bold" }
-italic = { family = "JetBrains Mono", style = "Italic" }
+size = 15
+
+# Primary font with Japanese fallbacks
+[font.normal]
+family = "JetBrains Mono"
+style = "Regular"
+
+[font.bold]
+family = "JetBrains Mono"
+style = "Bold"
+
+[font.italic]
+family = "JetBrains Mono"
+style = "Italic"
 
 # cursor stuff
 [cursor.style]
@@ -39,3 +48,6 @@ save_to_clipboard = true
 
 [scrolling]
 multiplier = 20
+
+[general]
+import = ["/home/jg/.config/alacritty/themes/themes/campbell.toml"]
