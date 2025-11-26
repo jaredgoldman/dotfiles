@@ -18,9 +18,3 @@ case ":$PATH:" in
 *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# Additional PATH exports
-export PATH="$PATH:/home/jg/.local/bin"
-export PATH="$HOME/pnpm-global/bin:$PATH"
-
-# pipx shell completions (commented out for performance)
-# eval "$(register-python-argcomplete pipx)" 
