@@ -26,4 +26,4 @@ source "$BASH_CONFIG_DIR/functions/ports.sh"
 source "$BASH_CONFIG_DIR/security/keychain.sh"
 
 # Source environment variables
-source "$BASH_CONFIG_DIR/environment/variables.sh"
+# source "$BASH_CONFIG_DIR/environment/variables.sh"

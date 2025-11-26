@@ -3,10 +3,6 @@
 
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export HISTSIZE=-1
-export HISTFILESIZE=-1
-export EDITOR="nvim"
-export PATH="/usr/sbin:$PATH"
 
 # Load NVM and add to PATH
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm

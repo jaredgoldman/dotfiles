@@ -1,6 +1,5 @@
 #!/bin/bash
 # General Aliases
-alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
 # Virtual python env
