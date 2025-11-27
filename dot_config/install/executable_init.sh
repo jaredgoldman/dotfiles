@@ -87,6 +87,43 @@ run_script() {
     return 0
 }
 
+# Configure chezmoi
+configure_chezmoi() {
+    log_info "Configuring chezmoi..."
+
+    # Check if chezmoi is installed
+    if ! command -v chezmoi >/dev/null 2>&1; then
+        log_warn "chezmoi not found, skipping configuration"
+        return 0
+    fi
+
+    local github_user="jaredgoldman"
+    local repo_name="dotfiles"
+    local ssh_remote="git@github.com:${github_user}/${repo_name}.git"
+    local user="jg"
+    local chezmoi_dir="/home/${user}/.local/share/chezmoi"
+
+    # Check if chezmoi is already initialized
+    if [ -d "$chezmoi_dir/.git" ]; then
+        log_info "Chezmoi already initialized, updating remote..."
+
+        # Change to chezmoi directory and update remote
+        if sudo -u "$user" git -C "$chezmoi_dir" remote get-url origin >/dev/null 2>&1; then
+            sudo -u "$user" git -C "$chezmoi_dir" remote set-url origin "$ssh_remote"
+            log_info "Updated chezmoi remote to $ssh_remote"
+        else
+            sudo -u "$user" git -C "$chezmoi_dir" remote add origin "$ssh_remote"
+            log_info "Added chezmoi remote $ssh_remote"
+        fi
+    else
+        log_info "Initializing chezmoi with SSH remote..."
+        sudo -u "$user" chezmoi init "$ssh_remote"
+        log_info "Initialized chezmoi with $ssh_remote"
+    fi
+
+    log_info "Chezmoi configuration completed"
+}
+
 # Main installation process
 main() {
     log_info "Starting installation process..."
@@ -102,6 +139,9 @@ main() {
     echo
 
     run_script "install-claude-code.sh"
+    echo
+
+    configure_chezmoi
     echo
 
     log_info "Installation completed successfully!"
