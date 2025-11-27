@@ -32,14 +32,6 @@ function generate_ssh_key() {
     echo "Error: Cannot proceed without ssh-agent"
     return 1
   fi
-
-  # Prompt for a custom string to append to the filename
-  read -p "Enter a custom string to append to the key filename: " custom_string
-  # Validate custom string isn't empty
-  if [[ -z "$custom_string" ]]; then
-    echo "Error: Custom string cannot be empty"
-    return 1
-  fi
   # Prompt for type of key to generate
   read -p "Enter the type of key to generate (ed25519, rsa, ecdsa): " key_type
   # Validate key type
@@ -51,8 +43,8 @@ function generate_ssh_key() {
     ;;
   esac
   # Define the key file names
-  private_key="$HOME/.ssh/id_${key_type}_${custom_string}"
-  public_key="$HOME/.ssh/id_${key_type}_${custom_string}.pub"
+  private_key="$HOME/.ssh/id_${key_type}"
+  public_key="$HOME/.ssh/id_${key_type}.pub"
   # Check if key already exists
   if [[ -f "$private_key" ]]; then
     read -p "Key already exists. Overwrite? (y/N): " overwrite
