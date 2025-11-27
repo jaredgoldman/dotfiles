@@ -56,6 +56,16 @@ validate_environment() {
         exit 1
     fi
 
+    if [ ! -f "$SCRIPT_DIR/install-aws-cli.sh" ]; then
+        log_error "install-aws-cli.sh not found in $SCRIPT_DIR"
+        exit 1
+    fi
+
+    if [ ! -f "$SCRIPT_DIR/install-nosql-workbench.sh" ]; then
+        log_error "install-nosql-workbench.sh not found in $SCRIPT_DIR"
+        exit 1
+    fi
+
     # Check if pacman is available (Arch Linux)
     if ! command -v pacman >/dev/null 2>&1; then
         log_error "pacman not found. This script requires Arch Linux"
@@ -68,7 +78,8 @@ validate_environment() {
 # Make scripts executable
 make_executable() {
     log_info "Making installation scripts executable..."
-    chmod +x "$SCRIPT_DIR/install-pnpm.sh" "$SCRIPT_DIR/install-claude-code.sh"
+    chmod +x "$SCRIPT_DIR/install-pnpm.sh" "$SCRIPT_DIR/install-claude-code.sh" \
+             "$SCRIPT_DIR/install-aws-cli.sh" "$SCRIPT_DIR/install-nosql-workbench.sh"
 }
 
 # Run installation script
@@ -142,6 +153,12 @@ main() {
     echo
 
     configure_chezmoi
+    echo
+
+    run_script "install-aws-cli.sh"
+    echo
+
+    run_script "install-nosql-workbench.sh"
     echo
 
     run_script "install-slack.sh"
