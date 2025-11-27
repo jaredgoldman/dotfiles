@@ -144,6 +144,9 @@ main() {
     configure_chezmoi
     echo
 
+    run_script "install-slack.sh"
+    echo
+
     log_info "Installation completed successfully!"
 }
 
