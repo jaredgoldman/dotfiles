@@ -19,6 +19,19 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "lazyvim.plugins.extras.ui.mini-animate" },
+    -- configure neo-tree to always show hidden files
+    {
+      "nvim-neo-tree/neo-tree.nvim",
+      opts = {
+        filesystem = {
+          filtered_items = {
+            visible = true, -- show filtered items
+            hide_dotfiles = false,
+            hide_gitignored = false,
+          },
+        },
+      },
+    },
     -- import/override with your plugins
     { import = "plugins" },
   },
