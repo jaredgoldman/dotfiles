@@ -71,6 +71,11 @@ validate_environment() {
         exit 1
     fi
 
+    if [ ! -f "$SCRIPT_DIR/install-bruno.sh" ]; then
+        log_error "install-bruno.sh not found in $SCRIPT_DIR"
+        exit 1
+    fi
+
     # Check if pacman is available (Arch Linux)
     if ! command -v pacman >/dev/null 2>&1; then
         log_error "pacman not found. This script requires Arch Linux"
@@ -85,7 +90,7 @@ make_executable() {
     log_info "Making installation scripts executable..."
     chmod +x "$SCRIPT_DIR/install-pnpm.sh" "$SCRIPT_DIR/install-claude-code.sh" \
              "$SCRIPT_DIR/install-aws-cli.sh" "$SCRIPT_DIR/install-nosql-workbench.sh" \
-             "$SCRIPT_DIR/install-openaws-vpn-client.sh"
+             "$SCRIPT_DIR/install-openaws-vpn-client.sh" "$SCRIPT_DIR/install-bruno.sh"
 }
 
 # Run installation script
@@ -174,6 +179,9 @@ main() {
     echo
 
     run_script "install-keychain.sh"
+    echo
+
+    run_script "install-bruno.sh"
     echo
 
     log_info "Installation completed successfully!"
