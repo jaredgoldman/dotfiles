@@ -173,6 +173,9 @@ main() {
     run_script "install-openaws-vpn-client.sh"
     echo
 
+    run_script "install-keychain.sh"
+    echo
+
     log_info "Installation completed successfully!"
 }
 
