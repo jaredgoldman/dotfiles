@@ -6,17 +6,56 @@ mount_remote_fs() {
   read -e -p "Enter SSH alias: " ssh_alias
 
   # Step 2: Create a directory with the SSH alias as its name if it doesn't exist
-  local_dir="$HOME/dev/osf/$ssh_alias"
+  local_dir="$HOME/dev/$ssh_alias"
   if [ ! -d "$local_dir" ]; then
     mkdir -p "$local_dir"
     echo "Directory $local_dir created."
   fi
 
-  # Step 3: Mount the remote filesystem
-  remote_dir="/home/ec2-user"
-  sshfs ec2-user@"$ssh_alias":"$remote_dir" "$local_dir"
+  # Step 3: Mount the remote filesystem using rclone with VFS caching
+  rclone mount ":sftp,host=$ssh_alias:" "$local_dir" \
+    --vfs-cache-mode full \
+    --vfs-cache-max-age 1h \
+    --dir-cache-time 10m \
+    --poll-interval 15s \
+    --daemon
 
-  echo "Mounted $ssh_alias:$remote_dir to $local_dir"
+  echo "Mounted $ssh_alias to $local_dir"
+}
+
+# Unmount remote filesystem
+unmount_remote_fs() {
+  local mount_dir="$HOME/dev"
+  local mounted=()
+
+  while IFS= read -r line; do
+    [[ -n "$line" ]] && mounted+=("$line")
+  done < <(mount -t fuse.rclonefs 2>/dev/null | grep "$mount_dir" | awk '{print $3}')
+
+  if [[ ${#mounted[@]} -eq 0 ]]; then
+    echo "No remote filesystems mounted under $mount_dir"
+    return 1
+  fi
+
+  echo "Mounted remote filesystems:"
+  for i in "${!mounted[@]}"; do
+    echo "  $((i+1))) ${mounted[$i]}"
+  done
+  echo "  a) All"
+
+  read -p "Select to unmount: " choice
+
+  if [[ "$choice" == "a" ]]; then
+    for dir in "${mounted[@]}"; do
+      fusermount -u "$dir" && echo "Unmounted $dir" || echo "Failed to unmount $dir"
+    done
+  elif [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ${#mounted[@]} )); then
+    local dir="${mounted[$((choice-1))]}"
+    fusermount -u "$dir" && echo "Unmounted $dir" || echo "Failed to unmount $dir"
+  else
+    echo "Invalid selection"
+    return 1
+  fi
 }
 
 # Function to get SSH config hosts
