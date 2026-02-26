@@ -31,12 +31,11 @@ function git-time() {
   git show -s --format=%ci "$1" 2>/dev/null || echo "Invalid commit hash or not in a git repo"
 }
 
-function gw() {
+gw() {
   branch="$1"
   repo_name=$(basename "$PWD")
   target_dir="../${repo_name}-${branch}"
 
-  git fetch origin
-  git worktree add "$target_dir" -b "$branch"
-  echo "Created worktree at $target_dir"
+  git worktree add "$target_dir" -b "$branch" &&
+  cd "$target_dir" || return
 }
