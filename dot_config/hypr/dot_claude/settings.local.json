@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(hyprctl version:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(hyprctl monitors:*)"
+    ]
+  }
+}
