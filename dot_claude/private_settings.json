@@ -63,7 +63,8 @@
       "Bash(tsc:*)",
       "Bash(npx -y tsc:*)",
       "Bash(TABLE_NAME=test npx vitest run:*)",
-      "Bash(TABLE_NAME=test node:*)"
+      "Bash(TABLE_NAME=test node:*)",
+      "Bash(python3:*)"
     ],
     "deny": [
       "Read(**/.env)",

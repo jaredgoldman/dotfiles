@@ -4,6 +4,7 @@
 - Arch Linux with omarchy (Hyprland-based desktop)
 - Editor: Neovim
 - Primary language: TypeScript
+- Package manager: pnpm (always use pnpm, never npm)
 
 ## Working Principles
 - Always keep the project context and documentation top of mind. Read CLAUDE.md files, READMEs, and relevant docs before diving into implementation.
@@ -25,3 +26,6 @@
 
 ## Planning
 - For non-trivial or multi-step implementations, always create a plan first. Tell the user where the plan file is stored so they can review it.
+
+## Custom Skills
+- **excel-parser** (`~/.claude/skills/excel-parser/`): Parses Excel files (.xlsx, .xls) using Python. Invoke with `/excel-parser <filepath> [json|csv|markdown]`. Supports `--sheet`, `--limit`, and `--headers-only` flags.
