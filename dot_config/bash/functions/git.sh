@@ -32,10 +32,35 @@ function git-time() {
 }
 
 gw() {
-  branch="$1"
-  repo_name=$(basename "$PWD")
-  target_dir="../${repo_name}-${branch}"
+  local branch="$1"
+  if [ -z "$branch" ]; then
+    echo "Usage: gw <branch-name>"
+    return 1
+  fi
 
-  git worktree add "$target_dir" -b "$branch" &&
+  local repo_name=$(basename "$PWD")
+  local source_dir="$PWD"
+  local target_dir="../${repo_name}-${branch}"
+
+  git worktree add "$target_dir" -b "$branch" || return
+
+  # Copy .env* files
+  for f in "$source_dir"/.env*; do
+    [ -f "$f" ] && cp "$f" "$target_dir/"
+  done
+
+  # Copy additional files listed in .worktree-files (one glob pattern per line)
+  if [ -f "$source_dir/.worktree-files" ]; then
+    while IFS= read -r pattern || [ -n "$pattern" ]; do
+      [[ "$pattern" =~ ^#|^$ ]] && continue
+      for f in $source_dir/$pattern; do
+        [ -e "$f" ] || continue
+        local rel="${f#$source_dir/}"
+        mkdir -p "$target_dir/$(dirname "$rel")"
+        cp -r "$f" "$target_dir/$rel"
+      done
+    done < "$source_dir/.worktree-files"
+  fi
+
   cd "$target_dir" || return
 }
