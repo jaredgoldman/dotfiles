@@ -38,9 +38,8 @@ gw() {
     return 1
   fi
 
-  local repo_name=$(basename "$PWD")
   local source_dir="$PWD"
-  local target_dir="../${repo_name}-${branch}"
+  local target_dir="../${branch}"
 
   git worktree add "$target_dir" -b "$branch" || return
 
