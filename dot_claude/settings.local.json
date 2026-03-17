@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(omarchy-cmd-screenrecord:*)",
+      "Bash(pkill:*)",
+      "Bash(gpu-screen-recorder:*)",
+      "Bash(pacman:*)",
+      "Bash(journalctl:*)"
+    ]
+  }
+}

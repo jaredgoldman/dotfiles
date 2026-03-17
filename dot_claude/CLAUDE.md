@@ -29,3 +29,4 @@
 
 ## Custom Skills
 - **excel-parser** (`~/.claude/skills/excel-parser/`): Parses Excel files (.xlsx, .xls) using Python. Invoke with `/excel-parser <filepath> [json|csv|markdown]`. Supports `--sheet`, `--limit`, and `--headers-only` flags.
+- **lambda-logs** (`~/.claude/skills/lambda-logs/`): Query AWS CloudWatch Lambda logs. Invoke with `/lambda-logs <function-name> [--profile name] [--start time] [--end time] [--filter pattern] [--limit n]`.

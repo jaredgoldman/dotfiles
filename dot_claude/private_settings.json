@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "permissions": {
     "allow": [
       "Bash(git status:*)",
@@ -64,7 +67,8 @@
       "Bash(npx -y tsc:*)",
       "Bash(TABLE_NAME=test npx vitest run:*)",
       "Bash(TABLE_NAME=test node:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(xargs:*)"
     ],
     "deny": [
       "Read(**/.env)",
