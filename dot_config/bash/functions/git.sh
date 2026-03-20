@@ -39,7 +39,7 @@ gw() {
   fi
 
   local source_dir="$PWD"
-  local target_dir="../${branch}"
+  local target_dir="../${branch//\//-}"
 
   git worktree prune 2>/dev/null
   if git show-ref --verify --quiet "refs/heads/$branch"; then
