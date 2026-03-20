@@ -41,7 +41,12 @@ gw() {
   local source_dir="$PWD"
   local target_dir="../${branch}"
 
-  git worktree add "$target_dir" "$branch" || return
+  git worktree prune 2>/dev/null
+  if git show-ref --verify --quiet "refs/heads/$branch"; then
+    git worktree add "$target_dir" "$branch" || return
+  else
+    git worktree add -b "$branch" "$target_dir" || return
+  fi
 
   # Copy .env* files
   for f in "$source_dir"/.env*; do
