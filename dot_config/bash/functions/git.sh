@@ -41,7 +41,7 @@ gw() {
   local source_dir="$PWD"
   local target_dir="../${branch}"
 
-  git worktree add "$target_dir" -b "$branch" || return
+  git worktree add "$target_dir" "$branch" || return
 
   # Copy .env* files
   for f in "$source_dir"/.env*; do
