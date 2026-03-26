@@ -5,7 +5,14 @@
       "Bash(pkill:*)",
       "Bash(gpu-screen-recorder:*)",
       "Bash(pacman:*)",
-      "Bash(journalctl:*)"
+      "Bash(journalctl:*)",
+      "Bash(go version:*)",
+      "Bash(sudo pacman:*)",
+      "Bash(go get:*)",
+      "Bash(go build:*)",
+      "Bash(go vet:*)",
+      "Bash(go test:*)",
+      "Bash(/home/jg/Work/wam/wam:*)"
     ]
   }
 }

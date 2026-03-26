@@ -22,7 +22,7 @@
 - When functionality is needed by multiple packages, consider whether it should be abstracted into a shared package.
 
 ## Git
-- Do not create commits, amend commits, or manage branches. The user manages git themselves.
+- Manage git (commits, branches, etc.) as needed, but always ask for confirmation before committing or pushing.
 
 ## Planning
 - For non-trivial or multi-step implementations, always create a plan first. Tell the user where the plan file is stored so they can review it.
